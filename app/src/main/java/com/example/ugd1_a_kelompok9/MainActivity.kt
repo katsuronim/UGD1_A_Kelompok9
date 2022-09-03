@@ -25,12 +25,18 @@ class MainActivity : AppCompatActivity() {
         mainLayout = findViewById(R.id.mainLayout)
         val btnClear: Button = findViewById(R.id.btnClear)
         val btnLogin: Button = findViewById(R.id.btnLogin)
+        val btnRegister: Button = findViewById(R.id.btnRegister)
 
         btnClear.setOnClickListener{
             inputUsername.getEditText()?.setText("")
             inputPassword.getEditText()?.setText("")
 
             Snackbar.make(mainLayout, "Text Cleared Success", Snackbar.LENGTH_LONG).show()
+        }
+
+        btnRegister.setOnClickListener{
+            val moveRegister = Intent(this, RegisterActivity::class.java)
+            startActivity(moveRegister)
         }
 
         btnLogin.setOnClickListener(View.OnClickListener {
@@ -46,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 inputPassword.setError("Password must be filled with text")
                 checkLogin = false
             }
-            if (username == "admin" && password == "0610") checkLogin = true
+            if (username == "admin" && password == "kelompok 9") checkLogin = true
             if (!checkLogin) return@OnClickListener
             val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
             startActivity(moveHome)

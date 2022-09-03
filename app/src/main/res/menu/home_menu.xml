@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_user"
-        android:title="Usesr"/>
+        android:title="User"/>
 
     <item android:id="@+id/menu_creator"
         android:title="Creator"/>
