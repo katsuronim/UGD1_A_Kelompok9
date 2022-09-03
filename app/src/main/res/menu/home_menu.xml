@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_user"
+        android:title="Usesr"/>
+
+    <item android:id="@+id/menu_creator"
+        android:title="Creator"/>
+
+    <item android:id="@+id/menu_exit"
+        android:title="Exit App"/>
+</menu>
