@@ -32,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_user){
             changeFragment(FragmentUser())
