@@ -5,5 +5,8 @@
     <style name="AppTheme.NoActionBar" >
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#CDF0EA</item>
+        <item name="colorPrimaryDark">#5F6F94</item>
+        <item name="colorAccent">#97D2EC</item>
     </style>
 </resources>
