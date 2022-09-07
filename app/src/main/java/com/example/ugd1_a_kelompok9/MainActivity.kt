@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
                 return@OnClickListener
             }
-            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
+            val moveHome = Intent(this@MainActivity, MainPageActivity::class.java)
             startActivity(moveHome)
         })
     }
