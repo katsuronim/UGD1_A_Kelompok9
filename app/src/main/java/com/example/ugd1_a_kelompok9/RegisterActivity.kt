@@ -3,73 +3,79 @@ package com.example.ugd1_a_kelompok9
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import androidx.core.view.get
-import androidx.core.view.isEmpty
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import org.w3c.dom.Text
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var regEmail: TextInputLayout
-    private lateinit var regNoTelp: TextInputLayout
-    private lateinit var regTanggalLahir: TextInputLayout
-    private lateinit var regUsername: TextInputLayout
-    private lateinit var regPassword: TextInputLayout
+    private lateinit var email: TextInputEditText
+    private lateinit var vEmail: TextInputLayout
+    private lateinit var noTelp: TextInputEditText
+    private lateinit var vnoTelp: TextInputLayout
+    private lateinit var tanggalLahir: TextInputEditText
+    private lateinit var vTglLahir: TextInputLayout
+    private lateinit var username: TextInputEditText
+    private lateinit var vUsername: TextInputLayout
+    private lateinit var password: TextInputEditText
+    private lateinit var vPassword: TextInputLayout
     private lateinit var btnRegister: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        regEmail = findViewById(R.id.inputEmail)
-        regNoTelp = findViewById(R.id.inputNoTelp)
-        regTanggalLahir = findViewById(R.id.inputTanggalLahir)
-        regUsername = findViewById(R.id.inputUsername)
-        regPassword = findViewById(R.id.inputPassword)
+        email = findViewById(R.id.inputEmail)
+        vEmail = findViewById(R.id.regEmail)
+        noTelp = findViewById(R.id.inputNoTelp)
+        vnoTelp = findViewById(R.id.regNoTelp)
+        tanggalLahir = findViewById(R.id.inputTanggalLahir)
+        vTglLahir = findViewById(R.id.regTanggalLahir)
+        username = findViewById(R.id.inputUsername)
+        vUsername = findViewById(R.id.regUsername)
+        password = findViewById(R.id.inputPassword)
+        vPassword = findViewById(R.id.regPassword)
         btnRegister = findViewById(R.id.btnRegister)
 
-        btnRegister.setOnClickListener {
+        btnRegister.setOnClickListener{
+            var checkRegister = false
             val intent = Intent(this, MainActivity::class.java)
             val mBundle = Bundle()
-            val username: String = regUsername.getEditText()?.getText().toString()
-            val password: String = regPassword.getEditText()?.getText().toString()
-            val email: String = regEmail.getEditText()?.getText().toString()
-            val tanggalLahir: String = regTanggalLahir.getEditText()?.getText().toString()
-            val noTelp: String = regNoTelp.getEditText()?.getText().toString()
 
+            val LayUsername : String = vUsername.getEditText()?.getText().toString()
+            val LayPassword : String = vPassword.getEditText()?.getText().toString()
+            val LayNoTelp : String = vnoTelp.getEditText()?.getText().toString()
+            val LayTgl : String = vTglLahir.getEditText()?.getText().toString()
+            val LayEmail : String = vEmail.getEditText()?.getText().toString()
 
-            if (username.isEmpty()) {
-                regUsername.setError("Nama Tidak Boleh Kosong")
+            if (LayUsername.isEmpty()) {
+                username.setError("Nama Tidak Boleh Kosong")
+            }
+            if (LayPassword.isEmpty()) {
+                password.setError("Password Tidak Boleh Kosong")
+            }
+            if (LayNoTelp.isEmpty()) {
+                noTelp.setError("Nomor Telepon Tidak Boleh Kosong")
+            }
+            if (LayTgl.isEmpty()) {
+                tanggalLahir.setError("Tanggal Lahir Tidak Boleh Kosong")
+            }
+            if (LayEmail.isEmpty()) {
+                email.setError("Email Tidak Boleh Kosong")
+            } else {
+                //memasukkann data ke dalam bundle
+                mBundle.putString("email", email.text.toString())
+                mBundle.putString("noTelp", noTelp.text.toString())
+                mBundle.putString("tanggalLahir", tanggalLahir.text.toString())
+                mBundle.putString("username", username.text.toString())
+                mBundle.putString("password", password.text.toString())
+                //melakukan intent dengan memanggil bundle
+
+                intent.putExtras(mBundle)
+
+                startActivity(intent)
             }
 
-            if (password.isEmpty()) {
-                regPassword.setError("Password Tidak Boleh Kosong")
-            }
-
-            if (noTelp.isEmpty()) {
-                regNoTelp.setError("Nomor Telepon Tidak Boleh Kosong")
-            }
-
-            if (tanggalLahir.isEmpty()) {
-                regTanggalLahir.setError("Tanggal Lahir Tidak Boleh Kosong")
-            }
-
-            if (email.isEmpty()) {
-                regEmail.setError("Email Tidak Boleh Kosong")
-            }
-
-
-            //memasukkann data ke dalam bundle
-            mBundle.putString("email", regEmail.getEditText()?.getText().toString())
-            mBundle.putString("noTelp", regNoTelp.getEditText()?.getText().toString())
-            mBundle.putString("tanggalLahir", regTanggalLahir.getEditText()?.getText().toString())
-            mBundle.putString("username", regUsername.getEditText()?.getText().toString())
-            mBundle.putString("password", regPassword.getEditText()?.getText().toString())
-            //melakukan intent dengan memanggil bundle
-            intent.putExtras(mBundle)
-            startActivity(intent)
         }
     }
 }
