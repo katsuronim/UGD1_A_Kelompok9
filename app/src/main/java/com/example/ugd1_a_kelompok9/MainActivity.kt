@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setTitle("User Login")
-
         getBundle()
 
         inputUsername = findViewById(R.id.inputLayoutUsername)
