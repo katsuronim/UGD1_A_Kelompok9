@@ -7,7 +7,7 @@
     tools:context=".RegisterActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputUsername"
+        android:id="@+id/regUsername"
         android:layout_width="307dp"
         android:layout_height="48dp"
         android:layout_marginTop="124dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regUsername"
+            android:id="@+id/inputUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -30,7 +30,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputEmail"
+        android:id="@+id/regEmail"
         android:layout_width="307dp"
         android:layout_height="48dp"
         android:layout_marginTop="306dp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regEmail"
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -52,7 +52,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputTanggalLahir"
+        android:id="@+id/regTanggalLahir"
         android:layout_width="307dp"
         android:layout_height="48dp"
         android:layout_marginTop="389dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regTanggalLahir"
+            android:id="@+id/inputTanggalLahir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -74,7 +74,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputPassword"
+        android:id="@+id/regPassword"
         android:layout_width="307dp"
         android:layout_height="48dp"
         android:layout_marginTop="217dp"
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regPassword"
+            android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -96,7 +96,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputNoTelp"
+        android:id="@+id/regNoTelp"
         android:layout_width="307dp"
         android:layout_height="48dp"
         android:layout_marginTop="1dp"
@@ -107,11 +107,11 @@
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inputPassword"
+        app:layout_constraintTop_toTopOf="@+id/regPassword"
         app:layout_constraintVertical_bias="1.0">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regNoTelp"
+            android:id="@+id/inputNoTelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
