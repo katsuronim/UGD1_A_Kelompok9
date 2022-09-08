@@ -16,9 +16,9 @@
         <activity
             android:name=".MainPageActivity"
             android:exported="false" />
-        <activity
-            android:name=".FragmentMain"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".FragmentMain"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".NextRegisterActivity"
             android:exported="false" />
