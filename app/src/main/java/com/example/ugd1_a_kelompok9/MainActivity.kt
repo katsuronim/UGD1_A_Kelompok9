@@ -74,9 +74,13 @@ class MainActivity : AppCompatActivity() {
     fun getBundle(){
         val bundle: Bundle? = intent.extras
         val name: String? = bundle?.getString("username")
+        val pass: String? = bundle?.getString("password")
 
         inputUsername = findViewById(R.id.inputLayoutUsername)
         inputUsername.getEditText()?.setText(name)
+
+        inputPassword = findViewById(R.id.inputLayoutPassword)
+        inputPassword.getEditText()?.setText(pass)
     }
 
 }
