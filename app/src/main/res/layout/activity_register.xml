@@ -7,14 +7,36 @@
     tools:context=".RegisterActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/regUsername"
+        android:id="@+id/regNama"
         android:layout_width="307dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginBottom="561dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="500dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Usesrname"
+        android:text="Nama Lengkap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Lengkap"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/regUsername"
+        android:layout_width="307dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="420dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Username"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,17 +46,17 @@
             android:id="@+id/inputUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Username" />
+            android:hint="Username"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/regEmail"
         android:layout_width="307dp"
-        android:layout_height="48dp"
+        android:layout_height="55dp"
         android:layout_marginTop="306dp"
-        android:layout_marginBottom="379dp"
+        android:layout_marginBottom="315dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Email"
@@ -47,16 +69,16 @@
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Email"/>
+            android:hint="Email"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/regTanggalLahir"
         android:layout_width="307dp"
-        android:layout_height="48dp"
+        android:layout_height="55dp"
         android:layout_marginTop="389dp"
-        android:layout_marginBottom="296dp"
+        android:layout_marginBottom="235dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Tanggal Lahir"
@@ -69,16 +91,16 @@
             android:id="@+id/inputTanggalLahir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Tanggal Lahir" />
+            android:hint="Tanggal Lahir"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/regPassword"
         android:layout_width="307dp"
         android:layout_height="48dp"
-        android:layout_marginTop="217dp"
-        android:layout_marginBottom="468dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="180dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Password"
@@ -91,31 +113,32 @@
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Password"/>
+            android:hint="Password"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/regNoTelp"
         android:layout_width="307dp"
-        android:layout_height="48dp"
+        android:layout_height="55dp"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="180dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nomor Telepon"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/regPassword"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputNoTelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Nomor Telepon" />
+            android:hint="Password"
+            android:inputType="text" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -123,7 +146,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="596dp"
+        android:layout_marginBottom="100dp"
         android:text="REGISTER"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
