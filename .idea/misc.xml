@@ -12,6 +12,11 @@
         <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
         <entry key="..\:/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_next_register.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_read_user_data.xml" value="0.2" />
+        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_user_adapter.xml" value="0.2" />
+        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/fragment_read_data_user.xml" value="0.1" />
       </map>
     </option>
   </component>
@@ -20,5 +25,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.16666666666666666" />
+      </ProjectState>
+    </option>
   </component>
 </project>
