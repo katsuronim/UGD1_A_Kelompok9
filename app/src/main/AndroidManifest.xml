@@ -14,14 +14,15 @@
         android:theme="@style/AppTheme.WithActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".SpalashScreen"
+            android:name=".SplashScreenActivity"
+            android:label="SplashScreenActibity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".MainPageActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".FragmentMain"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".FragmentMain" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".NextRegisterActivity"
             android:exported="false" />
