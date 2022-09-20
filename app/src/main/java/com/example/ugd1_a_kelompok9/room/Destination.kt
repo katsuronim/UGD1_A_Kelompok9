@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class User (
+data class Destination (
         @PrimaryKey(autoGenerate = true)
-        val userID: Int,
-        val username: String,
-        val email: String
+        val destID : Int,
+        val placeName : String,
+        val price : Int
     )
