@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/layout/activity_home.xml" value="0.24003623188405798" />
         <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/layout/activity_main_page.xml" value="0.24003623188405798" />
         <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/layout/fragment_user.xml" value="0.23958333333333334" />
         <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/layout/rv_item_user.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/Kotlin/UGD1_A_Kelompok9/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
         <entry key="..\:/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_main.xml" value="0.1" />
