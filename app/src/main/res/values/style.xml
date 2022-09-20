@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar" />
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
+        <item name="colorPrimary">#47B5FF</item>
+        <item name="colorPrimaryDark">#1363DF</item>
+        <item name="colorAccent">#06283D</item>
+    </style>
+
+    <style name="AppTheme.WithActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
 
     <style name="AppTheme.NoActionBar" >
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">#CDF0EA</item>
-        <item name="colorPrimaryDark">#5F6F94</item>
-        <item name="colorAccent">#97D2EC</item>
     </style>
 </resources>
