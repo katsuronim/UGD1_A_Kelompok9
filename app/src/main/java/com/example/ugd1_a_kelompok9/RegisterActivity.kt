@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.core.view.isEmpty
 import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.example.ugd1_a_kelompok9.databinding.ActivityMainBinding
 import com.example.ugd1_a_kelompok9.databinding.ActivityRegisterBinding
 import com.example.ugd1_a_kelompok9.room.User
 import com.example.ugd1_a_kelompok9.room.UserDB
@@ -39,19 +39,38 @@ class RegisterActivity : AppCompatActivity() {
 
         db = Room.databaseBuilder(applicationContext, UserDB::class.java, "user-db").build()
         binding.btnRegister.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                db.userDao().addUser(
-                    User(
-                        0,
-                        inputNama.text.toString(),
-                        inputUsername.text.toString(),
-                        inputPassword.text.toString(),
-                        inputEmail.text.toString(),
-                        inputTanggalLahir.text.toString(),
-                        inputNoTelp.text.toString()
+            if(inputNama.text.toString() == ""){
+                inputNama.setError("Nama Tidak Boleh Kosong")
+            }
+            if(inputUsername.text.toString() == ""){
+                inputUsername.setError("Username Tidak Boleh Kosong")
+            }
+            if(inputPassword.text.toString() == "") {
+                inputPassword.setError("Password Tidak Boleh Kosong")
+            }
+            if(inputEmail.text.toString() == ""){
+                inputEmail.setError("Email Tidak Boleh Kosong")
+            }
+            if(inputNoTelp.text.toString() == ""){
+                inputNoTelp.setError("No Telp Tidak Boleh Kosong")
+            }
+            if(inputTanggalLahir.text.toString() == ""){
+                inputTanggalLahir.setError("Tanggal Lahir Tidak Boleh Kosong")
+            } else {
+                CoroutineScope(Dispatchers.IO).launch {
+                    db.userDao().addUser(
+                        User(
+                            0,
+                            inputNama.text.toString(),
+                            inputUsername.text.toString(),
+                            inputPassword.text.toString(),
+                            inputEmail.text.toString(),
+                            inputTanggalLahir.text.toString(),
+                            inputNoTelp.text.toString()
+                        )
                     )
-                )
-                finish()
+                    finish()
+                }
             }
         }
     }
