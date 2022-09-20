@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Semester 5/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Semester 5/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_main.xml" value="0.17552083333333332" />
         <entry key="..\:/Semester 5/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_spalash_screen.xml" value="0.17552083333333332" />
-        <entry key="..\:/Semester 5/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_splash_screen.xml" value="0.4466666666666667" />
+        <entry key="..\:/Semester 5/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_splash_screen.xml" value="0.3333333333333333" />
       </map>
     </option>
   </component>
