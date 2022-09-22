@@ -37,26 +37,8 @@ class RegisterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        db = Room.databaseBuilder(applicationContext, UserDB::class.java, "user-db").build()
+        db = Room.databaseBuilder(applicationContext, UserDB::class.java, "appUser.db").build()
         binding.btnRegister.setOnClickListener {
-            if(inputNama.text.toString() == ""){
-                inputNama.setError("Nama Tidak Boleh Kosong")
-            }
-            if(inputUsername.text.toString() == ""){
-                inputUsername.setError("Username Tidak Boleh Kosong")
-            }
-            if(inputPassword.text.toString() == "") {
-                inputPassword.setError("Password Tidak Boleh Kosong")
-            }
-            if(inputEmail.text.toString() == ""){
-                inputEmail.setError("Email Tidak Boleh Kosong")
-            }
-            if(inputNoTelp.text.toString() == ""){
-                inputNoTelp.setError("No Telp Tidak Boleh Kosong")
-            }
-            if(inputTanggalLahir.text.toString() == ""){
-                inputTanggalLahir.setError("Tanggal Lahir Tidak Boleh Kosong")
-            } else {
                 CoroutineScope(Dispatchers.IO).launch {
                     db.userDao().addUser(
                         User(
@@ -74,7 +56,25 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-}
+
+//            if(inputNama.text.toString() == ""){
+//                inputNama.setError("Nama Tidak Boleh Kosong")
+//            }
+//            if(inputUsername.text.toString() == ""){
+//                inputUsername.setError("Username Tidak Boleh Kosong")
+//            }
+//            if(inputPassword.text.toString() == "") {
+//                inputPassword.setError("Password Tidak Boleh Kosong")
+//            }
+//            if(inputEmail.text.toString() == ""){
+//                inputEmail.setError("Email Tidak Boleh Kosong")
+//            }
+//            if(inputNoTelp.text.toString() == ""){
+//                inputNoTelp.setError("No Telp Tidak Boleh Kosong")
+//            }
+//            if(inputTanggalLahir.text.toString() == ""){
+//                inputTanggalLahir.setError("Tanggal Lahir Tidak Boleh Kosong")
+//            } else {
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
