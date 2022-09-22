@@ -18,6 +18,7 @@ interface UserDao {
     @Query("SELECT * FROM User")
     suspend fun getUsers() : List<User>
 
+
     @Query("SELECT * FROM user WHERE username=:user AND password=:pass")
     suspend fun getUser(user: String , pass: String) :User
 
@@ -40,4 +41,7 @@ interface UserDao {
 //
 //    @Query("SELECT password from User")
 //    suspend fun getPassword(): List<Password>
+
+//    @Query("SELECT * FROM User WHERE userID =:user_id")
+//    suspend fun getUser(user_id: Int) : List<User>
 }

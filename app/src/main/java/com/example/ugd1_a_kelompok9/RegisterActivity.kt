@@ -1,13 +1,8 @@
 package com.example.ugd1_a_kelompok9
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import androidx.core.view.isEmpty
 import androidx.room.Room
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.example.ugd1_a_kelompok9.databinding.ActivityRegisterBinding
 import com.example.ugd1_a_kelompok9.room.User
 import com.example.ugd1_a_kelompok9.room.UserDB
