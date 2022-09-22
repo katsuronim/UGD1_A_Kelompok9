@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [User::class], views = [Destination::class],
+    entities = [User::class],
     version = 1
 )
 
