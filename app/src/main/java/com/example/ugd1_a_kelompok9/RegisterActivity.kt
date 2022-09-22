@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import org.w3c.dom.Text
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var email: TextInputEditText
@@ -39,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
 
         btnRegister.setOnClickListener{
             var checkRegister = false
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             val mBundle = Bundle()
 
             val LayUsername : String = vUsername.getEditText()?.getText().toString()

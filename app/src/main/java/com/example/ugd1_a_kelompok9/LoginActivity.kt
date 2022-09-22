@@ -7,10 +7,9 @@ import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var inputUsername: TextInputLayout
     private lateinit var inputPassword: TextInputLayout
     private lateinit var mainLayout: ConstraintLayout
@@ -66,15 +65,15 @@ class MainActivity : AppCompatActivity() {
 
                 return@OnClickListener
             }
-            val moveHome = Intent(this@MainActivity, MainPageActivity::class.java)
+            val moveHome = Intent(this@LoginActivity, MainPageActivity::class.java)
             startActivity(moveHome)
         })
     }
 
     fun getBundle(){
         val bundle: Bundle? = intent.extras
-        val name: String? = bundle?.getString("username")
-        val pass: String? = bundle?.getString("password")
+        val name: String? = bundle?.getString("admin")
+        val pass: String? = bundle?.getString("kelompok9")
 
         inputUsername = findViewById(R.id.inputLayoutUsername)
         inputUsername.getEditText()?.setText(name)
