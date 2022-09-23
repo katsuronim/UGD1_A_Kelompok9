@@ -37,9 +37,9 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
         userDb = UserDB.getDatabase(requireContext())
         //usersDb = Room.databaseBuilder(applicationContext, UserDB::class.java, "appUser.db").build()
 
-        val nama = sharePreference.getUser()?.nama
+        val nama = sharePreference.getUser()?.name
         val username = sharePreference.getUser()?.username
-        val tanggalLahir = sharePreference.getUser()?.tglLahir
+        val tanggalLahir = sharePreference.getUser()?.tanggalLahir
         val noTelp = sharePreference.getUser()?.noTelp
         val email = sharePreference.getUser()?.email
 
