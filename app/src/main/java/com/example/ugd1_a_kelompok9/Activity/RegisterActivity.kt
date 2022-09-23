@@ -42,8 +42,8 @@ class RegisterActivity : AppCompatActivity() {
                             inputUsername.text.toString(),
                             inputPassword.text.toString(),
                             inputEmail.text.toString(),
-                            inputTanggalLahir.text.toString(),
-                            inputNoTelp.text.toString()
+                            inputNoTelp.text.toString(),
+                            inputTanggalLahir.text.toString()
                         )
                     )
                     finish()
