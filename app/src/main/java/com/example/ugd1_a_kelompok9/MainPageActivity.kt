@@ -16,7 +16,7 @@ class MainPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_page)
 
         val firstFragment=FragmentMain()
-        val secondFragment=FragmentUser()
+        val secondFragment=FragmentAkun()
         val thirdFragment=FragmentCreator()
 
         val bottomNavigationView = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNavigationView)
