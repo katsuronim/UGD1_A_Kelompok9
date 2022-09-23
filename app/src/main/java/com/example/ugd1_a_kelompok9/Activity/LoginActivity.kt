@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.room.Room
 import com.example.ugd1_a_kelompok9.R
+import com.example.ugd1_a_kelompok9.SharePreference
 import com.example.ugd1_a_kelompok9.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
