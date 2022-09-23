@@ -1,11 +1,12 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.room.Room
+import com.example.ugd1_a_kelompok9.R
+import com.example.ugd1_a_kelompok9.SharePreference
 import com.example.ugd1_a_kelompok9.databinding.FragmentAkunBinding
 import com.example.ugd1_a_kelompok9.room.User
 import com.example.ugd1_a_kelompok9.room.UserDB
@@ -49,7 +50,9 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
         binding.etEmail.setText(email)
 
         binding.btnUpdate.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
 
+            }
         }
         return binding.root
     }

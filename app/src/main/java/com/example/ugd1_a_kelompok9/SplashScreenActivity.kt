@@ -3,13 +3,10 @@ package com.example.ugd1_a_kelompok9
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.view.WindowManager
-import android.window.SplashScreen
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.ugd1_a_kelompok9.Activity.LoginActivity
 import java.lang.Boolean
-import kotlin.Suppress
 
 
 class SplashScreenActivity : AppCompatActivity() {

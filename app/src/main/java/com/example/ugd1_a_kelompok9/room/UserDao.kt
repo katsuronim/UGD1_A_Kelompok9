@@ -1,7 +1,6 @@
 package com.example.ugd1_a_kelompok9.room
 
 import androidx.room.*
-import com.example.ugd1_a_kelompok9.LoginActivity
 
 @Dao
 interface UserDao {

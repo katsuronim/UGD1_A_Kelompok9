@@ -1,4 +1,4 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.Activity
 
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.ugd1_a_kelompok9.Fragment.FragmentAkun
+import com.example.ugd1_a_kelompok9.Fragment.FragmentCreator
+import com.example.ugd1_a_kelompok9.Fragment.FragmentUser
+import com.example.ugd1_a_kelompok9.R
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,17 +1,15 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.RecycleView
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.room.User
-import kotlinx.android.synthetic.main.activity_user_adapter.view.*
 
 class RVUserAdapter (private val user: ArrayList<User>) : RecyclerView.Adapter<RVUserAdapter.viewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_user, parent, false)
         return viewHolder(itemView)
     }

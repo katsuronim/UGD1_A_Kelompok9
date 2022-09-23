@@ -1,10 +1,11 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.RecycleView
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.entity.Creator
 
 class RVCreatorAdapter (private val data: Array<Creator>) : RecyclerView.Adapter<RVCreatorAdapter.viewHolder>() {
