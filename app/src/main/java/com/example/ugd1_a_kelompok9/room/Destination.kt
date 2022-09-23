@@ -8,5 +8,7 @@ data class Destination (
         @PrimaryKey(autoGenerate = true)
         val destID : Int,
         val placeName : String,
-        val price : Int
+        val tglBerangkat : String,
+        val tglPulang : String
+//        val cost : Int
     )
