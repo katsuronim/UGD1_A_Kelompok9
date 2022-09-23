@@ -18,7 +18,7 @@ class RVUserAdapter (private val user: ArrayList<User>) : RecyclerView.Adapter<R
 
     override fun onBindViewHolder(holder: viewHolder, position: Int){
         val currentItem = user[position]
-        holder.tvFullname.text = currentItem.nama
+        holder.tvFullname.text = currentItem.name
         holder.tvDetail.text = "${currentItem.email} - ${currentItem.username}"
     }
 
