@@ -1,4 +1,4 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ugd1_a_kelompok9.R
+import com.example.ugd1_a_kelompok9.RecycleView.RVCreatorAdapter
 import com.example.ugd1_a_kelompok9.entity.Creator
 
 class FragmentCreator : Fragment() {

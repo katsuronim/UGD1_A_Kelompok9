@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
@@ -28,19 +28,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainPageActivity"
+            android:name=".Activity.MainPageActivity"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".FragmentMain" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".NextRegisterActivity"
+            android:name=".Activity.NextRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activity.RegisterActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activity.LoginActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".Activity.HomeActivity"
             android:exported="false" />
     </application>
 

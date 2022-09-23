@@ -1,7 +1,6 @@
 package com.example.ugd1_a_kelompok9.room
 
 import androidx.room.*
-import com.example.ugd1_a_kelompok9.LoginActivity
 
 @Dao
 interface UserDao {
@@ -9,8 +8,8 @@ interface UserDao {
     @Insert
     suspend fun addUser(user: User)
 
-    @Update
-    suspend fun updateUser(user: User)
+    @Query ("UPDATE user SET name=:nama, username=:username, password=:password, tanggalLahir=:tglLahir, noTelp=:noTelp, email=:email WHERE userID=:id ")
+    suspend fun updateUser(id: Int?,nama: String, username: String, password: String, tglLahir: String, noTelp: String, email: String)
 
     @Delete
     suspend fun deleteUser(user: User)
@@ -24,6 +23,9 @@ interface UserDao {
 
     @Query ("SELECT * FROM user ")
     fun readAllData() : List<User>
+
+    @Query("SELECT * FROM user WHERE userID=:id")
+    suspend fun getUserID(id: Int?) :User
 
 //    @Query("SELECT * FROM User WHERE id =:user_id")
 //    suspend fun getUser(user_id: Int) : List<User>

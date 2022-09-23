@@ -5,40 +5,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ugd1_a_kelompok9.room.User
-import kotlinx.android.synthetic.main.activity_user_adapter.view.*
+import com.example.ugd1_a_kelompok9.room.Tour
+import kotlinx.android.synthetic.main.activity_tour_adapter.view.*
 
-class UserAdapter (private val user: ArrayList<User>, private val listener: OnAdapterListener) :
-    RecyclerView.Adapter<UserAdapter.NoteViewHolder>() {
+class TourAdapter (private val tours: ArrayList<Tour>, private val listener: OnAdapterListener) :
+
+    RecyclerView.Adapter<TourAdapter.NoteViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.activity_user_adapter,parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.activity_tour_adapter,parent, false)
         )
     }
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val user = user[position]
-        holder.view.text_title.text = user.username
+        val tour = tours[position]
+        holder.view.text_title.text = tour.judul
         holder.view.text_title.setOnClickListener{
-            listener.onClick(user)
+            listener.onClick(tour)
         }
         holder.view.icon_edit.setOnClickListener {
-            listener.onUpdate(user)
+            listener.onUpdate(tour)
         }
         holder.view.icon_delete.setOnClickListener {
-            listener.onDelete(user)
+            listener.onDelete(tour)
         }
     }
-    override fun getItemCount() = user.size
+    override fun getItemCount() = tours.size
     inner class NoteViewHolder( val view: View): RecyclerView.ViewHolder(view)
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<User>){
-        user.clear()
-        user.addAll(list)
+    fun setData(list: List<Tour>){
+        tours.clear()
+        tours.addAll(list)
         notifyDataSetChanged()
     }
     interface OnAdapterListener {
-        fun onClick(user: User)
-        fun onUpdate(user: User)
-        fun onDelete(user: User)
+        fun onClick(tour: Tour)
+        fun onUpdate(tour: Tour)
+        fun onDelete(tour: Tour)
     }
 }

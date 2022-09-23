@@ -3,17 +3,16 @@ package com.example.ugd1_a_kelompok9
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.view.WindowManager
+import android.widget.FrameLayout
 import android.window.SplashScreen
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.ugd1_a_kelompok9.Activity.LoginActivity
 import java.lang.Boolean
-import kotlin.Suppress
 
 
 class SplashScreenActivity : AppCompatActivity() {
-    lateinit var splashScreen: ConstraintLayout
+    lateinit var splashScreen: FrameLayout
     var prevStarted = "yes"
     override fun onResume() {
         super.onResume()
@@ -23,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
             val editor = sharedpreferences.edit()
             editor.putBoolean(prevStarted, Boolean.TRUE)
             editor.apply()
-            val splashScreen = findViewById<ConstraintLayout>(R.id.splashscreen)
+            val splashScreen = findViewById<FrameLayout>(R.id.splashscreen)
         } else {
             moveToSecondary()
         }

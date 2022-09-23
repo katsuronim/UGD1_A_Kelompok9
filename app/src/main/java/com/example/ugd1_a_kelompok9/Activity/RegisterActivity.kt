@@ -1,4 +1,4 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -42,8 +42,8 @@ class RegisterActivity : AppCompatActivity() {
                             inputUsername.text.toString(),
                             inputPassword.text.toString(),
                             inputEmail.text.toString(),
-                            inputTanggalLahir.text.toString(),
-                            inputNoTelp.text.toString()
+                            inputNoTelp.text.toString(),
+                            inputTanggalLahir.text.toString()
                         )
                     )
                     finish()

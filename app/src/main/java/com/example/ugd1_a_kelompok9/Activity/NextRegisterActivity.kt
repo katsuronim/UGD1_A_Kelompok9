@@ -1,10 +1,11 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.Activity
 
 import android.widget.Button
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.example.ugd1_a_kelompok9.R
 
 class NextRegisterActivity : AppCompatActivity() {
     private lateinit var email: TextView
@@ -28,7 +29,7 @@ class NextRegisterActivity : AppCompatActivity() {
         setText()
 
         btnConfirm.setOnClickListener{
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
