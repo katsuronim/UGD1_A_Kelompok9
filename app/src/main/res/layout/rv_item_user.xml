@@ -28,13 +28,13 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tv_fullname"
         style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginEnd="134dp"
-        android:text="Username"
+        android:text="Fullname"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -46,9 +46,10 @@
         android:id="@+id/tv_details"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        android:text="Email - Password"
+        android:layout_marginEnd="30dp"
+        android:text="Email - Username"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_username"
+        app:layout_constraintBottom_toTopOf="@id/tv_fullname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent"
