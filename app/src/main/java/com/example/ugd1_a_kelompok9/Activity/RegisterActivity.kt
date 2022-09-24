@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -52,6 +53,7 @@ class RegisterActivity : AppCompatActivity() {
         db = Room.databaseBuilder(applicationContext, UserDB::class.java, "appUser.db").build()
         binding!!.btnRegister.setOnClickListener {
                 sendNotification1()
+                sendNotification2()
                 CoroutineScope(Dispatchers.IO).launch {
                     db.userDao().addUser(
                         User(
@@ -125,11 +127,21 @@ class RegisterActivity : AppCompatActivity() {
 
         }
     private fun sendNotification2(){
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+//        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+//            .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
+//            .setContentTitle("Proses Registrasi")
+//            .setContentText("Selamat anda berhasil registrasi!")
+//            .setPriority(NotificationCompat.PRIORITY_LOW)
+
+        val myBitmap = BitmapFactory.decodeResource(resources, R.drawable.travel)
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID_2)
             .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
             .setContentTitle("Proses Registrasi")
-            .setContentText("Selamat anda berhasil registrasi!")
-            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setContentText("Berhasil Registrasi")
+            .setLargeIcon(myBitmap)
+            .setStyle(NotificationCompat.BigPictureStyle()
+                .bigPicture(myBitmap)
+                .bigLargeIcon(myBitmap))
 
         with(NotificationManagerCompat.from(this)){
             notify(notificationId2, builder.build())

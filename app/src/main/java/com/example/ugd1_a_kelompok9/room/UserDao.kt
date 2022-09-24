@@ -8,7 +8,7 @@ interface UserDao {
     @Insert
     suspend fun addUser(user: User)
 
-    @Query ("UPDATE user SET name=:nama, username=:username, password=:password, tanggalLahir=:tglLahir, noTelp=:noTelp, email=:email WHERE userID=:id ")
+    @Query ("UPDATE User SET name=:nama, username=:username, password=:password, tanggalLahir=:tglLahir, noTelp=:noTelp, email=:email WHERE userID=:id ")
     suspend fun updateUser(id: Int?,nama: String, username: String, password: String?, tglLahir: String, noTelp: String, email: String)
 
     @Delete
