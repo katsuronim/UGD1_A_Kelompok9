@@ -40,8 +40,10 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
         userDb = UserDB.getDatabase(requireContext())
         //userDb = Room.databaseBuilder(applicationContext, UserDB::class.java, "appUser.db").build()
 
+        var id = sharePreference.getUser()?.userID
         val nama = sharePreference.getUser()?.name
         val username = sharePreference.getUser()?.username
+        var password = sharePreference.getUser()?.password
         val tanggalLahir = sharePreference.getUser()?.tanggalLahir
         val noTelp = sharePreference.getUser()?.noTelp
         val email = sharePreference.getUser()?.email
@@ -54,15 +56,17 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
 
         binding.btnUpdate.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                val id = sharePreference.getUser()?.userID
+                val userId = id
                 val nama = binding.LayoutNama.getEditText()?.getText().toString()
                 val username = binding.LayoutUsername.getEditText()?.getText().toString()
-                val password = sharePreference.getUser()?.password
+                val pass = password
                 val tanggalLahir = binding.LayoutTanggalLahir.getEditText()?.getText().toString()
                 val telp = binding.LayoutTelp.getEditText()?.getText().toString()
                 val email = binding.LayoutEmail.getEditText()?.getText().toString()
-                userDb.userDao().updateUser(id,nama,username,password,email,tanggalLahir,telp)
+                userDb.userDao().updateUser(userId,nama,username,pass,email,tanggalLahir,telp)
             }
+
+            Toast.makeText(context, "Berhasil Update", Toast.LENGTH_LONG).show()
         }
         return binding.root
     }
