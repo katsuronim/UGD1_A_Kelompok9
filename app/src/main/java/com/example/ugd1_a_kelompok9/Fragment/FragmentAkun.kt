@@ -57,11 +57,12 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
                 val id = sharePreference.getUser()?.userID
                 val nama = binding.LayoutNama.getEditText()?.getText().toString()
                 val username = binding.LayoutUsername.getEditText()?.getText().toString()
-                val password = sharePreference.getUser()!!.password
+                val password = sharePreference.getUser()?.password
                 val tanggalLahir = binding.LayoutTanggalLahir.getEditText()?.getText().toString()
                 val telp = binding.LayoutTelp.getEditText()?.getText().toString()
                 val email = binding.LayoutEmail.getEditText()?.getText().toString()
-                userDb.userDao().updateUser(id,nama,username,password,email,tanggalLahir,telp)            }
+                userDb.userDao().updateUser(id,nama,username,password,email,tanggalLahir,telp)
+            }
         }
         return binding.root
     }
