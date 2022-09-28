@@ -25,7 +25,7 @@ interface UserDao {
     fun readAllData() : List<User>
 
     @Query("SELECT * FROM user WHERE userID=:id")
-    suspend fun getUserID(id: Int?) :User
+    suspend fun getUserID(id: Int?) : User
 
 //    @Query("SELECT * FROM User WHERE id =:user_id")
 //    suspend fun getUser(user_id: Int) : List<User>
