@@ -22,11 +22,25 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.example.ugd1_a_kelompok9.NotificationReceiver
+
+
 class EditDestinationActivity : AppCompatActivity() {
     val db by lazy { DestinationDB(this) }
     private var destId: Int = 0
     private val CHANNEL_ID_1 = "channel_notification_01"
+    private val CHANNEL_ID_2 = "channel_notification_02"
     private val notificationId1 = 101
+    private val notificationId2 = 102
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +48,17 @@ class EditDestinationActivity : AppCompatActivity() {
         createNotificationChannel()
 
         setContentView(R.layout.edit_destination)
+
         setupView()
         setupListener()
+
+        createNotificationChannel()
     }
 
-    fun setupView(){
+    fun setupView() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         val intentType = intent.getIntExtra("intent_type", 0)
-        when (intentType){
+        when (intentType) {
             Constant.TYPE_CREATE -> {
                 button_update.visibility = View.GONE
             }
@@ -56,28 +73,35 @@ class EditDestinationActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun setupListener() {
         button_save.setOnClickListener {
+            sendNotification2()
             sendNotification()
             CoroutineScope(Dispatchers.IO).launch {
                 db.destinationDao().addDestination(
-                    Destination(0,edit_placeName.text.toString(),
+                    Destination(
+                        0, edit_placeName.text.toString(),
                         edit_tglBerangkat.text.toString(),
                         edit_tglPulang.text.toString(),
                         edit_biaya.text.toString(),
-                        edit_deskripsi.text.toString())
+                        edit_deskripsi.text.toString()
+                    )
                 )
                 finish()
             }
         }
         button_update.setOnClickListener {
+//            sendNotification1()
             CoroutineScope(Dispatchers.IO).launch {
                 db.destinationDao().updateDestination(
-                    Destination(destId, edit_placeName.text.toString(),
+                    Destination(
+                        destId, edit_placeName.text.toString(),
                         edit_tglBerangkat.text.toString(),
                         edit_tglPulang.text.toString(),
                         edit_biaya.text.toString(),
-                        edit_deskripsi.text.toString())
+                        edit_deskripsi.text.toString()
+                    )
                 )
                 finish()
             }
@@ -95,6 +119,91 @@ class EditDestinationActivity : AppCompatActivity() {
             edit_deskripsi.setText(destinations.deskripsi)
         }
     }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification Title"
+            val descriptionText = "Notification Description"
+//
+//            val channel1 = NotificationChannel(
+//                CHANNEL_ID_1,
+//                name,
+//                NotificationManager.IMPORTANCE_DEFAULT
+//            ).apply {
+//                description = descriptionText
+//            }
+            val channel2 = NotificationChannel(
+                CHANNEL_ID_2,
+                name,
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = descriptionText
+            }
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(channel1)
+            notificationManager.createNotificationChannel(channel2)
+        }
+    }
+
+//    private fun sendNotification1(){
+//
+//        val intent : Intent = Intent(this, MainActivity::class.java).apply {
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        }
+//
+//        val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+//        val broadcastIntent : Intent = Intent( this, NotificationReceiver::class.java)
+//        //broadcastIntent.putExtra("toastMessage", binding?.etMessage?.text.toString())
+//        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+//
+//        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+//            .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
+//            .setContentTitle("Edit Destinasi")
+//            .setContentText("Berhasil Edit Destinasi")
+//            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//            .setColor(Color.BLUE)
+//            .setAutoCancel(true)
+//            .setContentIntent(pendingIntent)
+//            .addAction(R.mipmap.voyager_launcher_foreground, "Toast", actionIntent)
+//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//        with(NotificationManagerCompat.from(this)){
+//            notify(notificationId1, builder.build())
+//        }
+//    }
+
+
+    private fun sendNotification2(){
+
+        val intent : Intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+        val broadcastIntent : Intent = Intent( this, NotificationReceiver::class.java)
+        //broadcastIntent.putExtra("toastMessage", binding?.etMessage?.text.toString())
+        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+            .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
+            .setContentTitle("Save Destinasi")
+            .setContentText("Berhasil Save Destinasi")
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .setColor(Color.BLUE)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+            .addAction(R.mipmap.voyager_launcher_foreground, "Toast", actionIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)){
+            notify(notificationId1, builder.build())
+        }
+    }
+
+
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
