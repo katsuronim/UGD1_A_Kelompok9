@@ -19,14 +19,29 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.graphics.Color
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.example.ugd1_a_kelompok9.NotificationReceiver
+
 class ReadDestinationActivity : AppCompatActivity() {
     val db by lazy { DestinationDB(this) }
     lateinit var destinationAdapter: DestinationAdapter
+//    private val CHANNEL_ID_1 = "channel_notification_01"
+//    private val notificationId1 = 101
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_destination)
         setupListener()
         setupRecyclerView()
+
+//        createNotificationChannel()
     }
     //berfungsi untuk membuat sebuah note status pada button yang
     //ditekan untuk CRUD yang dilaksanakan
@@ -67,6 +82,7 @@ class ReadDestinationActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     db.destinationDao().deleteDestination(destination)
                     loadData()
+//                    sendNotification1()
                 }
             })
         }
@@ -86,6 +102,53 @@ class ReadDestinationActivity : AppCompatActivity() {
             }
         }
     }
+
+//    private fun createNotificationChannel() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val name = "Notification Title"
+//            val descriptionText = "Notification Description"
+//
+//            val channel1 = NotificationChannel(
+//                CHANNEL_ID_1,
+//                name,
+//                NotificationManager.IMPORTANCE_DEFAULT
+//            ).apply {
+//                description = descriptionText
+//            }
+//            val notificationManager: NotificationManager =
+//                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(channel1)
+//        }
+//    }
+
+//    private fun sendNotification1(){
+//
+//        val intent : Intent = Intent(this, MainActivity::class.java).apply {
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        }
+//
+//        val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+//        val broadcastIntent : Intent = Intent( this, NotificationReceiver::class.java)
+//        //broadcastIntent.putExtra("toastMessage", binding?.etMessage?.text.toString())
+//        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+//
+//        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+//            .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
+//            .setContentTitle("Hapus Destinasi")
+//            .setContentText("Berhasil Hapus Destinasi")
+//            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//            .setColor(Color.BLUE)
+//            .setAutoCancel(true)
+//            .setContentIntent(pendingIntent)
+//            .addAction(R.mipmap.voyager_launcher_foreground, "Toast", actionIntent)
+//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//        with(NotificationManagerCompat.from(this)){
+//            notify(notificationId1, builder.build())
+//        }
+//
+//    }
+
     fun setupListener() {
         button_create.setOnClickListener{
             intentEdit(0,Constant.TYPE_CREATE)
@@ -99,3 +162,5 @@ class ReadDestinationActivity : AppCompatActivity() {
                 .putExtra("intent_type", intentType))
     }
 }
+
+
