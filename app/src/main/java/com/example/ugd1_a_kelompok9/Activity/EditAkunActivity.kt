@@ -1,4 +1,4 @@
-package com.example.ugd1_a_kelompok9
+package com.example.ugd1_a_kelompok9.Activity
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.room.Room
 import com.example.ugd1_a_kelompok9.Activity.LoginActivity
 import com.example.ugd1_a_kelompok9.Activity.MainPageActivity
+import com.example.ugd1_a_kelompok9.SharePreference
 import com.example.ugd1_a_kelompok9.databinding.ActivityEditAkunBinding
 import com.example.ugd1_a_kelompok9.room.User
 import com.example.ugd1_a_kelompok9.room.UserDB
