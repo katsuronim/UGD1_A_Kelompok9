@@ -8,21 +8,24 @@
     tools:context=".Activity.ReadDestinationActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_note"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/list_destination"
+        android:layout_width="413dp"
+        android:layout_height="600dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/button_create"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/destination_adapter" />
+
     <Button
         android:id="@+id/button_create"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/yellow"
-        android:textColor="@color/black"
-        android:text="Tulis Catatan"
+        android:backgroundTint="#B8E9FF"
+        android:textColor="#01579B"
+        android:text="Tambah Destinasi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
