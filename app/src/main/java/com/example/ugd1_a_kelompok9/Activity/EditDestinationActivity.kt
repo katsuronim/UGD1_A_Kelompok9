@@ -147,7 +147,7 @@ class EditDestinationActivity : AppCompatActivity() {
 
     private fun sendNotification1(){
 
-        val intent : Intent = Intent(this, MainActivity::class.java).apply {
+        val intent : Intent = Intent(this, ReadDestinationActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 
