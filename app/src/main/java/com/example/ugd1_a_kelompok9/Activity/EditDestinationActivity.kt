@@ -22,25 +22,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.os.Build
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import com.example.ugd1_a_kelompok9.NotificationReceiver
-
 
 class EditDestinationActivity : AppCompatActivity() {
     val db by lazy { DestinationDB(this) }
     private var destId: Int = 0
     private val CHANNEL_ID_1 = "channel_notification_01"
     private val CHANNEL_ID_2 = "channel_notification_02"
+    private val CHANNEL_ID_3 = "channel_notification_03"
     private val notificationId1 = 101
     private val notificationId2 = 102
+    private val notificationId3 = 103
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,8 +67,8 @@ class EditDestinationActivity : AppCompatActivity() {
 
     private fun setupListener() {
         button_save.setOnClickListener {
+            sendNotification3()
             sendNotification2()
-            sendNotification()
             CoroutineScope(Dispatchers.IO).launch {
                 db.destinationDao().addDestination(
                     Destination(
@@ -92,7 +83,7 @@ class EditDestinationActivity : AppCompatActivity() {
             }
         }
         button_update.setOnClickListener {
-//            sendNotification1()
+            sendNotification1()
             CoroutineScope(Dispatchers.IO).launch {
                 db.destinationDao().updateDestination(
                     Destination(
@@ -124,16 +115,23 @@ class EditDestinationActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Notification Title"
             val descriptionText = "Notification Description"
-//
-//            val channel1 = NotificationChannel(
-//                CHANNEL_ID_1,
-//                name,
-//                NotificationManager.IMPORTANCE_DEFAULT
-//            ).apply {
-//                description = descriptionText
-//            }
+
+            val channel1 = NotificationChannel(
+                CHANNEL_ID_1,
+                name,
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = descriptionText
+            }
             val channel2 = NotificationChannel(
                 CHANNEL_ID_2,
+                name,
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = descriptionText
+            }
+            val channel3 = NotificationChannel(
+                CHANNEL_ID_3,
                 name,
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
@@ -142,37 +140,37 @@ class EditDestinationActivity : AppCompatActivity() {
 
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//            notificationManager.createNotificationChannel(channel1)
+            notificationManager.createNotificationChannel(channel1)
             notificationManager.createNotificationChannel(channel2)
         }
     }
 
-//    private fun sendNotification1(){
-//
-//        val intent : Intent = Intent(this, MainActivity::class.java).apply {
-//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        }
-//
-//        val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-//        val broadcastIntent : Intent = Intent( this, NotificationReceiver::class.java)
-//        //broadcastIntent.putExtra("toastMessage", binding?.etMessage?.text.toString())
-//        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-//
-//        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
-//            .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
-//            .setContentTitle("Edit Destinasi")
-//            .setContentText("Berhasil Edit Destinasi")
-//            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-//            .setColor(Color.BLUE)
-//            .setAutoCancel(true)
-//            .setContentIntent(pendingIntent)
-//            .addAction(R.mipmap.voyager_launcher_foreground, "Toast", actionIntent)
-//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//
-//        with(NotificationManagerCompat.from(this)){
-//            notify(notificationId1, builder.build())
-//        }
-//    }
+    private fun sendNotification1(){
+
+        val intent : Intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+        val broadcastIntent : Intent = Intent( this, NotificationReceiver::class.java)
+        //broadcastIntent.putExtra("toastMessage", binding?.etMessage?.text.toString())
+        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+            .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
+            .setContentTitle("Edit Destinasi")
+            .setContentText("Berhasil Edit Destinasi")
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .setColor(Color.BLUE)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+            .addAction(R.mipmap.voyager_launcher_foreground, "Toast", actionIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)){
+            notify(notificationId1, builder.build())
+        }
+    }
 
 
     private fun sendNotification2(){
@@ -186,7 +184,7 @@ class EditDestinationActivity : AppCompatActivity() {
         //broadcastIntent.putExtra("toastMessage", binding?.etMessage?.text.toString())
         val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID_3)
             .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
             .setContentTitle("Save Destinasi")
             .setContentText("Berhasil Save Destinasi")
@@ -203,32 +201,7 @@ class EditDestinationActivity : AppCompatActivity() {
     }
 
 
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
-    }
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Notification Title"
-            val descriptionText = "Notification Description"
-
-            val channel1 = NotificationChannel(
-                CHANNEL_ID_1,
-                name,
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-                description = descriptionText
-            }
-
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel1)
-        }
-    }
-
-    private fun sendNotification(){
+    private fun sendNotification3(){
 
         val intent : Intent = Intent(this, ReadDestinationActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -241,7 +214,7 @@ class EditDestinationActivity : AppCompatActivity() {
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID_1)
             .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
-            .setContentTitle("Destinasi Baru!")
+            .setContentTitle("Save Destinasi!")
             .setContentText("Berhasil Menambahkan Destinasi")
             .setStyle(NotificationCompat.BigTextStyle()
                 .bigText(getString(R.string.text_dummy))
@@ -256,9 +229,14 @@ class EditDestinationActivity : AppCompatActivity() {
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)){
-            notify(notificationId1, builder.build())
+            notify(notificationId3, builder.build())
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
 }
