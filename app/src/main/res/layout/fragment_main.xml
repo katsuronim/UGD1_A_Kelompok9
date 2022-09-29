@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    tools:context=".Fragment.FragmentMain">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_destination"
         android:layout_width="413dp"
         android:layout_height="485dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/button_add"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +20,7 @@
         tools:listitem="@layout/destination_adapter" />
 
     <Button
-        android:id="@+id/button_add"
+        android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

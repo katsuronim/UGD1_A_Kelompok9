@@ -21,6 +21,8 @@ class DestinationAdapter(private val destinations: ArrayList<Destination>, priva
     Int) {
         val destination = destinations[position]
         holder.view.placeName.text = destination.placeName
+        holder.view.cost.text = destination.cost.toString()
+        holder.view.description.text = destination.deskripsi
         holder.view.placeName.setOnClickListener{
             listener.onClick(destination)
         }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".EditDestinationActivity">
+    tools:context=".Activity.EditDestinationActivity">
 
     <TextView
         android:id="@+id/titleDestination"
@@ -62,6 +62,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_tglBerangkat" />
 
+    <EditText
+        android:id="@+id/edit_deskripsi"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:hint="Deskripsi Tujuan Wisata"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:minLines="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_tglPulang" />
+
+    <EditText
+        android:id="@+id/edit_biaya"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:hint="Biaya Wisata"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:minLines="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_deskripsi" />
+
 
     <Button
         android:id="@+id/button_save"
@@ -70,6 +98,7 @@
         android:layout_marginTop="104dp"
         android:text="SAVE"
         android:textColor="#4527A0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
