@@ -4,11 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Destination (
-        @PrimaryKey(autoGenerate = true)
-        val destID : Int,
-        val placeName : String,
-        val tglBerangkat : String,
-        val tglPulang : String
-//        val cost : Int
-    )
+data class Destination(
+    @PrimaryKey(autoGenerate = true)
+    val destID: Int,
+    val placeName: String,
+    val tglBerangkat: String,
+    val tglPulang: String,
+    val cost: String,
+    val deskripsi: String
+)
