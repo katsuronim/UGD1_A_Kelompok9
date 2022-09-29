@@ -8,6 +8,6 @@ import android.widget.Toast
 class NotificationReceiver  : BroadcastReceiver(){
     override fun onReceive(context: Context?, intent: Intent) {
         val message = intent.getStringExtra("toastMessage")
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Proses Berhasil dilakukan", Toast.LENGTH_LONG).show()
     }
 }
