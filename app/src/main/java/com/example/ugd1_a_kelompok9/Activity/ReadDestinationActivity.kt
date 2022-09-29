@@ -63,7 +63,7 @@ class ReadDestinationActivity : AppCompatActivity() {
                 deleteDialog(destination)
             }
         })
-        list_note.apply {
+        list_destination.apply {
             layoutManager = LinearLayoutManager(applicationContext)
             adapter = destinationAdapter
         }
