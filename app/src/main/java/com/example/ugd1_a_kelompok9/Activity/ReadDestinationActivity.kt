@@ -62,6 +62,10 @@ class ReadDestinationActivity : AppCompatActivity() {
             override fun onDelete(destination: Destination) {
                 deleteDialog(destination)
             }
+
+            override fun onMap(destination: Destination) {
+                intentMap(destination.destID, Constant.TYPE_READ)
+            }
         })
         list_destination.apply {
             layoutManager = LinearLayoutManager(applicationContext)
@@ -161,6 +165,13 @@ class ReadDestinationActivity : AppCompatActivity() {
                 .putExtra("intent_id", destinationId)
                 .putExtra("intent_type", intentType))
     }
+
+    fun intentMap(destinationId : Int, intentType: Int){
+        startActivity(Intent(applicationContext, LocationActivity::class.java)
+            .putExtra("intent_id", destinationId)
+            .putExtra("intent_type", intentType))
+    }
+
 }
 
 

@@ -32,6 +32,9 @@ class DestinationAdapter(private val destinations: ArrayList<Destination>, priva
         holder.view.icon_delete.setOnClickListener {
             listener.onDelete(destination)
         }
+        holder.view.icon_map.setOnClickListener {
+            listener.onMap(destination)
+        }
     }
 
     override fun getItemCount() = destinations.size
@@ -49,5 +52,6 @@ class DestinationAdapter(private val destinations: ArrayList<Destination>, priva
         fun onClick(destination: Destination)
         fun onUpdate(destination: Destination)
         fun onDelete(destination: Destination)
+        fun onMap(destination: Destination)
     }
 }
