@@ -27,8 +27,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var mBundle: Bundle
     lateinit var vUsername: String
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

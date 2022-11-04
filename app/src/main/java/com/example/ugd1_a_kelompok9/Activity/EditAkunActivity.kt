@@ -5,16 +5,12 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.room.Room
-import com.example.ugd1_a_kelompok9.Activity.LoginActivity
-import com.example.ugd1_a_kelompok9.Activity.MainPageActivity
 import com.example.ugd1_a_kelompok9.SharePreference
 import com.example.ugd1_a_kelompok9.databinding.ActivityEditAkunBinding
 import com.example.ugd1_a_kelompok9.room.User
 import com.example.ugd1_a_kelompok9.room.UserDB
-import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_edit_akun.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -84,6 +80,10 @@ class EditAkunActivity : AppCompatActivity() {
 //                ))
                 finish()
             }
+        }
+        btnCamera.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
         }
         setContentView(binding?.root)
     }

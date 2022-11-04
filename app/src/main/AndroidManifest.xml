@@ -16,6 +16,10 @@
         android:theme="@style/AppTheme.WithActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <activity
+            android:name=".Activity.CameraActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.LocationActivity"
             android:exported="false" />
