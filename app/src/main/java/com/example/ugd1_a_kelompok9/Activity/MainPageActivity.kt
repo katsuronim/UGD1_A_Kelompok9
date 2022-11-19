@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 
 import androidx.fragment.app.Fragment
+import com.example.ugd1_a_kelompok9.Fragment.DataUserFragment
 import com.example.ugd1_a_kelompok9.Fragment.FragmentAkun
 import com.example.ugd1_a_kelompok9.Fragment.FragmentCreator
 import com.example.ugd1_a_kelompok9.Fragment.FragmentMain
