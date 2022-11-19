@@ -7,15 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ugd1_a_kelompok9.Activity.EditAkunActivity
+import com.example.ugd1_a_kelompok9.Activity.FormEditUserActivity
+import com.example.ugd1_a_kelompok9.Data.RClient
+import com.example.ugd1_a_kelompok9.Data.ResponseDataUser
+import com.example.ugd1_a_kelompok9.Data.UserData
 import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.SharePreference
 import com.example.ugd1_a_kelompok9.databinding.FragmentAkunBinding
 import com.example.ugd1_a_kelompok9.room.UserDB
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FragmentAkun : Fragment(R.layout.fragment_akun) {
     private var _binding : FragmentAkunBinding? = null
     private val binding get() = _binding!!
+
+    private var b:Bundle? = null
+    private val listUser = ArrayList<UserData>()
 
     private lateinit var userDb: UserDB
     private lateinit var sharePreference: SharePreference
@@ -30,27 +40,27 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
         _binding = FragmentAkunBinding.inflate(inflater, container, false)
 
         val rootView: View = inflater.inflate(R.layout.fragment_akun, container, false)
-
-        sharePreference = SharePreference(requireContext())
-        userDb = UserDB.getDatabase(requireContext())
+        val username = b?.getString("username")
+        username?.let { getDataDetail(it) }
+//        sharePreference = SharePreference(requireContext())
+//        userDb = UserDB.getDatabase(requireContext())
         //userDb = Room.databaseBuilder(applicationContext, UserDB::class.java, "appUser.db").build()
 
-        var id = sharePreference.getUser()?.userID.toString()
-        val nama = sharePreference.getUser()?.name
-        val username = sharePreference.getUser()?.username
-        var password = sharePreference.getUser()?.password
-        val tanggalLahir = sharePreference.getUser()?.tanggalLahir
-        val noTelp = sharePreference.getUser()?.noTelp
-        val email = sharePreference.getUser()?.email
+//        var id = sharePreference.getUser()?.userID.toString()
+//        val nama = sharePreference.getUser()?.name
+//        val username = sharePreference.getUser()?.username
+//        var password = sharePreference.getUser()?.password
+//        val tanggalLahir = sharePreference.getUser()?.tanggalLahir
+//        val noTelp = sharePreference.getUser()?.noTelp
+//        val email = sharePreference.getUser()?.email
 
-        binding.etNama.setText(nama)
+        if (username != null) {
+            getDataDetail(username)
+        }
         binding.etUsername.setText(username)
-        binding.etTanggalLahir.setText(tanggalLahir)
-        binding.etNoTelp.setText(noTelp)
-        binding.etEmail.setText(email)
 
         binding.btnUpdate.setOnClickListener {
-            val intent = Intent(requireActivity(), EditAkunActivity::class.java)
+            val intent = Intent(requireActivity(), FormEditUserActivity::class.java)
             startActivity(intent)
 //            CoroutineScope(Dispatchers.IO).launch {
 //                val userId = id
@@ -70,5 +80,31 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
 
         }
         return binding.root
+    }
+
+    fun getDataDetail(user:String){
+        val username = b?.getString("username")
+        username?.let { getDataDetail(it) }
+
+        RClient.instances.getData(user).enqueue(object : Callback<ResponseDataUser> {
+            override fun onResponse(
+                call: Call<ResponseDataUser>,
+                response: Response<ResponseDataUser>
+            ) {
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        listUser.addAll(it.data) }
+                    with(binding) {
+                        binding.etNama.setText(listUser[0].nama)
+                        binding.etUsername.setText(listUser[0].username)
+                        binding.etEmail.setText(listUser[0].email)
+                        binding.etTanggalLahir.setText(listUser[0].tgllhr)
+                        binding.etNoTelp.setText(listUser[0].notelp)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<ResponseDataUser>, t: Throwable) {
+            }
+        })
     }
 }
