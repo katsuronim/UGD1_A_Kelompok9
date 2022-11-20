@@ -31,7 +31,6 @@ class EditDestinationActivity : AppCompatActivity() {
     private val CHANNEL_ID_3 = "channel_notification_03"
     private val notificationId1 = 101
     private val notificationId2 = 102
-    private val notificationId3 = 103
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,13 +129,6 @@ class EditDestinationActivity : AppCompatActivity() {
             ).apply {
                 description = descriptionText
             }
-            val channel3 = NotificationChannel(
-                CHANNEL_ID_3,
-                name,
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-                description = descriptionText
-            }
 
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -229,7 +221,7 @@ class EditDestinationActivity : AppCompatActivity() {
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)){
-            notify(notificationId3, builder.build())
+            notify(notificationId2, builder.build())
         }
 
     }
