@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.ugd1_a_kelompok9.RClientDestination
-import com.example.ugd1_a_kelompok9.ResponseCreate
+import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.databinding.ActivityDetailDestinationBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,6 +16,7 @@ class DetailDestinationActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailDestinationBinding
     private var b:Bundle? = null
     private val listDestination = ArrayList<DestinationData>()
+    private var id: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +29,12 @@ class DetailDestinationActivity : AppCompatActivity() {
         nama?.let { getDataDetail(it) }
 
         binding.btnHapus.setOnClickListener {
-            nama?.let { it1 -> deleteData(it1) }
+            id?.let { it1 -> deleteData(it1) }
         }
 
         binding.btnEdit.setOnClickListener {
             startActivity(Intent(this, FormEditDestinationActivity::class.java).apply {
-                putExtra("nama",nama)
+                putExtra("id",id)
             })
         }
     }
@@ -54,6 +55,7 @@ class DetailDestinationActivity : AppCompatActivity() {
                         tvTglPulang.text = listDestination[0].tanggal_pulang
                         tvHarga.text = listDestination[0].harga
                         tvDeskripsi.text = listDestination[0].deskripsi
+                        id = listDestination[0].id
                     }
                 }
             }

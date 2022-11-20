@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.ugd1_a_kelompok9.RClientDestination
-import com.example.ugd1_a_kelompok9.ResponseCreate
+import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.databinding.ActivityFormAddDestinationBinding
 import org.json.JSONObject
 import retrofit2.Call
