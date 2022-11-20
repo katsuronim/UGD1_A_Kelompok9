@@ -1,21 +1,18 @@
 package com.example.ugd1_a_kelompok9.Activity
 
-import android.R.attr.password
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.text.TextUtils
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.ugd1_a_kelompok9.Data.*
+import com.example.ugd1_a_kelompok9.Data.RClient
+import com.example.ugd1_a_kelompok9.Data.ResponseDataUser
+import com.example.ugd1_a_kelompok9.Data.UserData
 import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.databinding.ActivityDetailUserBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         binding =
             ActivityDetailUserBinding.inflate(layoutInflater)
-        b = intent.extras
+        val extras = Bundle()
 //        getBundle()
 //        sharePreference = SharePreference(this)
         inputUsername = findViewById(R.id.inputLayoutUsername)
@@ -78,21 +75,23 @@ class LoginActivity : AppCompatActivity() {
             if (password.isEmpty()) {
                 inputPassword.setError("Password must be filled with text")
             }
-            if(username == vUsername && password == vPassword) {
-                b?.putString("username", username)
-                val moveHome = Intent(this@LoginActivity, MainPageActivity::class.java)
-                startActivity(moveHome)
+            if (username == vUsername && password == vPassword) {
+                extras.putString("username", vUsername)
+                extras.putString("password", vPassword)
+                val intent = Intent(this@LoginActivity, MainPageActivity::class.java)
+                intent.putExtras(extras)
+                startActivity(intent)
             }
-            if(username != vUsername && password != vPassword) {
+            if (username != vUsername && password != vPassword) {
                 inputUsername.setError("Username salah!")
                 inputPassword.setError("Password salah!")
                 inputUsername.getEditText()?.setText(vUsername)
                 inputPassword.getEditText()?.setText(vPassword)
             }
-            if(username != vUsername){
+            if (username != vUsername) {
                 inputUsername.setError("Username salah!")
             }
-            if(password != vPassword){
+            if (password != vPassword) {
                 inputPassword.setError("Password salah!")
             }
 
