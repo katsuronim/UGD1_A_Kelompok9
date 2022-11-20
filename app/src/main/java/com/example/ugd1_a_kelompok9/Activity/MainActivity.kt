@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener{
-            val moveRegister = Intent(this, RegisterActivity::class.java)
+            val moveRegister = Intent(this, FormAddUserActivity::class.java)
             startActivity(moveRegister)
         }
 

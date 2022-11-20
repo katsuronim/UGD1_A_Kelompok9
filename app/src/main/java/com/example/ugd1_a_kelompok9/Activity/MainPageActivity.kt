@@ -1,10 +1,9 @@
 package com.example.ugd1_a_kelompok9.Activity
 
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.ugd1_a_kelompok9.Fragment.FragmentAkun
 import com.example.ugd1_a_kelompok9.Fragment.FragmentCreator
@@ -13,11 +12,20 @@ import com.example.ugd1_a_kelompok9.R
 
 
 class MainPageActivity : AppCompatActivity() {
+    private var username: String = ""
+    private var password: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
 
+        val intent = intent
+
+        val extras = intent.extras
+
+        username = extras!!.getString("username").toString()
+        password = extras!!.getString("password").toString()
         val firstFragment= FragmentMain()
         val secondFragment= FragmentAkun()
         val thirdFragment= FragmentCreator()
@@ -54,4 +62,11 @@ class MainPageActivity : AppCompatActivity() {
             commit()
         }
 
+    public fun getUsername(): String {
+        return username
+    }
+
+    public fun getPassword(): String {
+        return password
+    }
 }
