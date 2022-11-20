@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ugd1_a_kelompok9">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +18,15 @@
         android:theme="@style/AppTheme.WithActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".Activity.FormEditUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.FormAddUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DetailUserActivity"
+            android:exported="false" />
         <activity
             android:name=".destination.FormEditDestinationActivity"
             android:exported="false">
