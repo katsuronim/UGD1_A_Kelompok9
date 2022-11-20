@@ -25,7 +25,7 @@ interface api {
     @FormUrlEncoded
     @PUT("users/{id}")
     fun updateData(
-        @Path("id") id:String?,
+        @Path("id") id: Int,
         @Field("nama") nama:String?,
         @Field("username") username:String?,
         @Field("password") password:String?,

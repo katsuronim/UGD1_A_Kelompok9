@@ -2,12 +2,13 @@ package com.example.ugd1_a_kelompok9.Fragment
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.ugd1_a_kelompok9.Activity.EditAkunActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.ugd1_a_kelompok9.Activity.FormEditUserActivity
+import com.example.ugd1_a_kelompok9.Activity.MainPageActivity
 import com.example.ugd1_a_kelompok9.Data.RClient
 import com.example.ugd1_a_kelompok9.Data.ResponseDataUser
 import com.example.ugd1_a_kelompok9.Data.UserData
@@ -15,7 +16,6 @@ import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.SharePreference
 import com.example.ugd1_a_kelompok9.databinding.FragmentAkunBinding
 import com.example.ugd1_a_kelompok9.room.UserDB
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +26,8 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
 
     private var b:Bundle? = null
     private val listUser = ArrayList<UserData>()
+    private var username: String = ""
+    private var password: String = ""
 
     private lateinit var userDb: UserDB
     private lateinit var sharePreference: SharePreference
@@ -35,12 +37,17 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val ft = parentFragmentManager.beginTransaction()
+        ft.detach(this).attach(this).commit()
 
-
+        val activity: MainPageActivity? = activity as MainPageActivity?
         _binding = FragmentAkunBinding.inflate(inflater, container, false)
+        username = activity!!.getUsername()
+        password = activity!!.getPassword()
 
         val rootView: View = inflater.inflate(R.layout.fragment_akun, container, false)
-        val username = b?.getString("username")
+//        val username = b?.getString("username")
+        binding.etUsername.setText(username)
         username?.let { getDataDetail(it) }
 //        sharePreference = SharePreference(requireContext())
 //        userDb = UserDB.getDatabase(requireContext())
@@ -61,6 +68,8 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
 
         binding.btnUpdate.setOnClickListener {
             val intent = Intent(requireActivity(), FormEditUserActivity::class.java)
+            intent.putExtra("username", username)
+            intent.putExtra("password", password)
             startActivity(intent)
 //            CoroutineScope(Dispatchers.IO).launch {
 //                val userId = id

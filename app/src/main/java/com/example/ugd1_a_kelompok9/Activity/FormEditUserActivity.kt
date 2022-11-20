@@ -2,9 +2,9 @@
 package com.example.ugd1_a_kelompok9.Activity
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ugd1_a_kelompok9.Data.RClient
 import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.Data.ResponseDataUser
@@ -13,11 +13,13 @@ import com.example.ugd1_a_kelompok9.databinding.ActivityFormEditUserBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.collections.ArrayList
+
 
 class FormEditUserActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFormEditUserBinding
-    private var b:Bundle? = null
+    private var vUsername: String = ""
+    private var vPassword: String = ""
+    private var vId: Int = 0
     private val listUser = ArrayList<UserData>()
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +29,13 @@ class FormEditUserActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Form Edit User"
-        b = intent.extras
-        val idUser = b?.getString("id")
+        val intent = intent
+//
+//        val extras = intent.extras
+
+        vUsername = intent.getStringExtra("username").toString()
+        vPassword = intent.getStringExtra("password").toString()
+        getDetailData(vUsername)
 
         binding.btnUpdate.setOnClickListener {
             with(binding) {
@@ -39,7 +46,7 @@ class FormEditUserActivity : AppCompatActivity() {
                 val tgllahir = txtEditTgllahir.text.toString()
                 val email = txtEditEmail.text.toString()
 
-                RClient.instances.updateData(idUser,nama,username,password,notelp,tgllahir,email).enqueue(object :
+                RClient.instances.updateData(vId, nama,username,password,notelp,tgllahir,email).enqueue(object :
                     Callback<ResponseCreate> {
                     override fun onResponse(
                         call: Call<ResponseCreate>,
@@ -68,19 +75,13 @@ class FormEditUserActivity : AppCompatActivity() {
                     response.body()?.let {
                         listUser.addAll(it.data) }
                     with(binding) {
-//                        txtNobp.setText(listUser[0].nim)
-
-                        txtEditNama.setText(listUser[0].nama)
-
-                        txtEditUsername.setText(listUser[0].username)
-
-                        txtEditPassword.setText(listUser[0].password)
-
-                        txtEditNotelp.setText(listUser[0].notelp)
-
-                        txtEditTgllahir.setText(listUser[0].tgllhr)
-
-                        txtEditEmail.setText(listUser[0].email)
+                        vId = listUser[0].id
+                        binding.txtEditNama.setText(listUser[0].nama)
+                        binding.txtEditUsername.setText(listUser[0].username)
+                        binding.txtEditPassword.setText(listUser[0].password)
+                        binding.txtEditNotelp.setText(listUser[0].notelp)
+                        binding.txtEditTgllahir.setText(listUser[0].tgllhr)
+                        binding.txtEditEmail.setText(listUser[0].email)
                     }
                 }}
             override fun onFailure(call: Call<ResponseDataUser>, t: Throwable) {
