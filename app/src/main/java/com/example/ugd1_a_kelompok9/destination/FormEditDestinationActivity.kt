@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.ugd1_a_kelompok9.RClientDestination
-import com.example.ugd1_a_kelompok9.ResponseCreate
+import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.databinding.ActivityFormEditDestinationBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,7 +31,7 @@ class FormEditDestinationActivity : AppCompatActivity() {
         supportActionBar?.title = "Form Edit Destination"
 
         b = intent.extras
-        val nama = b?.getString("nama")
+        val id = b?.getString("id")
 
         binding.tvTglBerangkat.setOnClickListener {
             val datePicker = DatePickerDialog.OnDateSetListener{
@@ -46,7 +46,7 @@ class FormEditDestinationActivity : AppCompatActivity() {
             dateDialog(this,datePicker).show()
         }
 
-        nama?.let { getDetailData(it) }
+        id?.let { getDetailData(it) }
 
         binding.btnUpdate.setOnClickListener{
             with(binding){
@@ -56,7 +56,7 @@ class FormEditDestinationActivity : AppCompatActivity() {
                 val harga = txtHarga.text.toString()
                 val deskripsi = txtDeskripsi.text.toString()
 
-                RClientDestination.instances.updateData(nama,tglBerangkat, tglPulang,harga,deskripsi).enqueue(object :
+                RClientDestination.instances.updateData(id, nama,tglBerangkat, tglPulang,harga,deskripsi).enqueue(object :
                     Callback<ResponseCreate> {
                     override fun onResponse(call: Call<ResponseCreate>, response: Response<ResponseCreate>){
                         if (response.isSuccessful){
