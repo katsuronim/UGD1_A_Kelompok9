@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.ugd1_a_kelompok9.RClientDestination
 import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.databinding.ActivityFormAddDestinationBinding
+import com.shashank.sony.fancytoastlib.FancyToast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,12 +55,12 @@ class FormAddDestinationActivity : AppCompatActivity() {
                     response: Response<ResponseCreate>
                 ) {
                     if(response.isSuccessful){
-                        Toast.makeText(applicationContext,"${response.body()?.pesan}",Toast.LENGTH_LONG).show()
+                        FancyToast.makeText(applicationContext,"${response.body()?.pesan}",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show()
                         finish()
                     }else{
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
                         txtNama.setError(jsonObj.getString("message"))
-                        Toast.makeText(applicationContext,"Maaf sudah ada data", Toast.LENGTH_LONG).show()
+                        FancyToast.makeText(applicationContext,"Maaf sudah ada data",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
                     }
                 }
 

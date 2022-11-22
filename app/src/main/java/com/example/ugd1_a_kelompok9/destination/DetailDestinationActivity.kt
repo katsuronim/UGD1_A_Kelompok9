@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.ugd1_a_kelompok9.RClientDestination
 import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.databinding.ActivityDetailDestinationBinding
+import com.shashank.sony.fancytoastlib.FancyToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -93,7 +94,7 @@ class DetailDestinationActivity : AppCompatActivity() {
                 response: Response<ResponseCreate>
             ) {
                 if(response.isSuccessful){
-                    Toast.makeText(applicationContext, "Data berhasil dihapus", Toast.LENGTH_LONG).show()
+                    FancyToast.makeText(applicationContext,"Data berhasil dihapus", FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show()
                     finish()
                 }
             }
