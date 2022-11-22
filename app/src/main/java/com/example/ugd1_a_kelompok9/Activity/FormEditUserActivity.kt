@@ -10,6 +10,7 @@ import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.Data.ResponseDataUser
 import com.example.ugd1_a_kelompok9.Data.UserData
 import com.example.ugd1_a_kelompok9.databinding.ActivityFormEditUserBinding
+import com.shashank.sony.fancytoastlib.FancyToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,8 +54,7 @@ class FormEditUserActivity : AppCompatActivity() {
                         response: Response<ResponseCreate>
                     ) {
                         if(response.isSuccessful) {
-                            Toast.makeText(applicationContext,"${response.body()?.pesan}",
-                                Toast.LENGTH_LONG).show()
+                            FancyToast.makeText(applicationContext,"${response.body()?.pesan}",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show()
                             finish()
                         }
                     }
