@@ -21,9 +21,26 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289" />
+        app:layout_constraintVertical_bias="0.297" />
 
+    <Button
+        android:id="@+id/btnQRMenu"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#65647C"
+        android:fontFamily="sans-serif-black"
+        android:text="Scan QR Code"
+        android:textColor="#FBFACD"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

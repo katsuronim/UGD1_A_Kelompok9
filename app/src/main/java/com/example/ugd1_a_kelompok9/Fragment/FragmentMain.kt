@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.ugd1_a_kelompok9.Activity.EditDestinationActivity
+import com.example.ugd1_a_kelompok9.Activity.QRCodeActivity
 import com.example.ugd1_a_kelompok9.Activity.ReadDestinationActivity
 import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.SharePreference
@@ -39,6 +40,10 @@ class FragmentMain:Fragment(R.layout.fragment_main) {
 //            CoroutineScope(Dispatchers.IO).launch {
 //
 //            }
+        }
+        binding.btnQRMenu.setOnClickListener{
+            val intent = Intent(requireActivity(), QRCodeActivity::class.java)
+            startActivity(intent)
         }
         return binding.root
     }
