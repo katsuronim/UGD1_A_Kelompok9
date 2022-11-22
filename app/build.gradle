@@ -7,12 +7,12 @@ plugins {
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.ugd1_a_kelompok9"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -60,20 +60,19 @@ dependencies {
 //    implementation "androidx.room:room-ktx:2.4.3"
 //    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
 //    implementation 'org.jetbrains.anko:anko:0.10.8'
 //    implementation 'org.jetbrains.anko:anko-commons:0.10.8'
 //
 //    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 //    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //maps
     implementation 'org.osmdroid:osmdroid-android:6.1.11'
@@ -83,6 +82,22 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
-    implementation 'io.github.shashank02051997:FancyToast:2.0.2'
+    //library baru untuk ugd
+    //implementasi PDF Library IText
+    implementation 'com.itextpdf:itext7-core:7.1.13'
 
+    //implementasi QR Code Scanner
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+
+    //implementasi QR CODE GENERATE
+    implementation 'com.github.kenglxn.qrgen:android:2.6.0'
+    implementation 'com.google.mlkit:barcode-scanning:17.0.2'
+
+    //implementasi PDF Library OpenPDF
+    implementation 'com.github.librepdf:openpdf:1.3.29'
+
+    // ticketview
+    implementation 'com.vipulasri:ticketview:1.1.2'
+
+    implementation 'io.github.shashank02051997:FancyToast:2.0.2'
 }
