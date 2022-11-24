@@ -13,12 +13,16 @@ import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.databinding.ActivityDetailUserBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import com.romainpiel.shimmer.Shimmer
+import com.romainpiel.shimmer.ShimmerTextView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
+    var tv: ShimmerTextView? = null
+    var shimmer: Shimmer? = null
     private lateinit var inputUsername: TextInputLayout
     private lateinit var inputPassword: TextInputLayout
     private lateinit var checkUsername: TextInputLayout
@@ -49,6 +53,10 @@ class LoginActivity : AppCompatActivity() {
         val btnClear: Button = findViewById(R.id.btnClear)
         val btnLogin: Button = findViewById(R.id.btnLogin)
         val btnRegister: Button = findViewById(R.id.btnRegister)
+        val tv: ShimmerTextView = findViewById(R.id.textView)
+
+        shimmer = Shimmer()
+        shimmer!!.start(tv)
 
         btnClear.setOnClickListener{
             inputUsername.getEditText()?.setText("")

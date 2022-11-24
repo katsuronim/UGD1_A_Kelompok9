@@ -19,14 +19,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gambar" />
 
-    <TextView
+    <com.romainpiel.shimmer.ShimmerTextView
         android:id="@+id/textView"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:text="User Login"
+        android:fontFamily="sans-serif-condensed-light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="User Login"
-        android:textColor="@color/black"
+        android:textColor="#444"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@id/imageView"
         app:layout_constraintTop_toBottomOf="@id/imageView" />

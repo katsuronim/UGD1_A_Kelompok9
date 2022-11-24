@@ -22,9 +22,12 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
+import com.romainpiel.shimmer.Shimmer
+import com.romainpiel.shimmer.ShimmerTextView
 
 class QRCodeActivity : AppCompatActivity(), View.OnClickListener {
-
+    var tv: ShimmerTextView? = null
+    var shimmer: Shimmer? = null
     private lateinit var binding: ActivityQrcodeBinding
 
     companion object {
@@ -54,6 +57,10 @@ class QRCodeActivity : AppCompatActivity(), View.OnClickListener {
         binding.cameraBtn.setOnClickListener(this)
         binding.galleryBtn.setOnClickListener(this)
         binding.scanBtn.setOnClickListener(this)
+        val tv: ShimmerTextView = findViewById(R.id.textView)
+
+        shimmer = Shimmer()
+        shimmer!!.start(tv)
 
         cameraPermission = arrayOf(
             android.Manifest.permission.CAMERA,
