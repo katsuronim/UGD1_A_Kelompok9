@@ -56,9 +56,8 @@ class FormEditDestinationActivity : AppCompatActivity() {
                 val tglPulang = tglpulangView.text.toString()
                 val harga = txtHarga.text.toString()
                 val deskripsi = txtDeskripsi.text.toString()
-                val foto = txtFoto.text.toString()
 
-                RClientDestination.instances.updateData(id, nama,tglBerangkat, tglPulang,harga,deskripsi,foto).enqueue(object :
+                RClientDestination.instances.updateData(id, nama,tglBerangkat, tglPulang,harga,deskripsi).enqueue(object :
                     Callback<ResponseCreate> {
                     override fun onResponse(call: Call<ResponseCreate>, response: Response<ResponseCreate>){
                         if (response.isSuccessful){
