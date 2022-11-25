@@ -3,12 +3,16 @@ package com.example.ugd1_a_kelompok9.destination
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.ugd1_a_kelompok9.RClientDestination
 import com.example.ugd1_a_kelompok9.Data.ResponseCreate
+import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.databinding.ActivityDetailDestinationBinding
 import com.shashank.sony.fancytoastlib.FancyToast
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_detail_destination.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +22,9 @@ class DetailDestinationActivity : AppCompatActivity() {
     private var b:Bundle? = null
     private val listDestination = ArrayList<DestinationData>()
     private var id: String = ""
+    private var foto: String = ""
+    private lateinit var imageUrl: String
+    private lateinit var image: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,10 @@ class DetailDestinationActivity : AppCompatActivity() {
         val nama = b?.getString("nama")
 
         nama?.let { getDataDetail(it) }
+
+        imageUrl = "https://www.rentalmobilbali.net/wp-content/uploads/2020/06/Waktu-Termurah-Liburan-Ke-Bali.jpg"
+        image = findViewById(R.id.imageView)
+        Picasso.with(this@DetailDestinationActivity).load(imageUrl).into(image)
 
         binding.btnHapus.setOnClickListener {
             id?.let { it1 -> deleteData(it1) }
