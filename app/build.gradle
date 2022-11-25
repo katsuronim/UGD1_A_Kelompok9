@@ -99,10 +99,15 @@ dependencies {
     // ticketview
     implementation 'com.vipulasri:ticketview:1.1.2'
 
+    //fancyToast
     implementation 'io.github.shashank02051997:FancyToast:2.0.2'
+
     //date time picker
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
 
     // Shimmer Title
     implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }
