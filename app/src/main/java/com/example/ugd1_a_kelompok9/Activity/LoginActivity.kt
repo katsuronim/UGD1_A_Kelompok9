@@ -77,6 +77,9 @@ class LoginActivity : AppCompatActivity() {
 
             getDataDetail(username)
 
+            var checkUser = vUsername
+            var checkPass = vPassword
+
             if (username.isEmpty()) {
                 inputUsername.setError("Username must be filled with text")
             }
@@ -90,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                 intent.putExtras(extras)
                 startActivity(intent)
             }
-            if (username != vUsername && password != vPassword) {
+            if (username != checkUser && password != checkPass) {
                 inputUsername.setError("Username salah!")
                 inputPassword.setError("Password salah!")
                 inputUsername.getEditText()?.setText(vUsername)
@@ -178,8 +181,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     fun getDataDetail(user:String){
-        val username = b?.getString("username")
-        username?.let { getDataDetail(it) }
+//        val username = b?.getString("username")
+//        user?.let { getDataDetail(it) }
 
         RClient.instances.getData(user).enqueue(object : Callback<ResponseDataUser> {
             override fun onResponse(
@@ -190,8 +193,8 @@ class LoginActivity : AppCompatActivity() {
                     response.body()?.let {
                         listUser.addAll(it.data) }
                     with(binding) {
-                        checkUsername.getEditText()?.setText(listUser[0].username)
-                        checkUsername.getEditText()?.setText(listUser[0].password)
+//                        checkUsername.getEditText()?.setText(listUser[0].username)
+//                        checkUsername.getEditText()?.setText(listUser[0].password)
                         vUsername = listUser[0].username
                         vPassword = listUser[0].password
                     }
