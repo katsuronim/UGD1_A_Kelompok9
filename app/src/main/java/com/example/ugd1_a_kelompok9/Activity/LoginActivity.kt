@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.ugd1_a_kelompok9.Data.RClient
+import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.Data.ResponseDataUser
 import com.example.ugd1_a_kelompok9.Data.UserData
 import com.example.ugd1_a_kelompok9.R
@@ -15,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.romainpiel.shimmer.Shimmer
 import com.romainpiel.shimmer.ShimmerTextView
+import com.shashank.sony.fancytoastlib.FancyToast
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,36 +78,66 @@ class LoginActivity : AppCompatActivity() {
             val username: String = inputUsername.getEditText()?.getText().toString()
             val password: String = inputPassword.getEditText()?.getText().toString()
 
-            getDataDetail(username)
+//            getDataDetail(username)
+            RClient.instances.checkLogin(username,password).enqueue(object :
+                Callback<ResponseCreate> {
+                override fun onResponse(
+                    call: Call<ResponseCreate>,
+                    response: Response<ResponseCreate>
+                ) {
+                    if(response.isSuccessful){
+                        extras.putString("username", vUsername)
+                        extras.putString("password", vPassword)
+                        val intent = Intent(this@LoginActivity, MainPageActivity::class.java)
+                        intent.putExtras(extras)
+                        startActivity(intent)
+                        FancyToast.makeText(applicationContext,"${response.body()?.pesan}",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS,true).show()
+                        finish()
+                    }else {
+                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
 
-            var checkUser = vUsername
-            var checkPass = vPassword
+//                        txtUsername.setError(jsonObj.getString("message"))
+                        inputUsername.setError("Username salah!")
+                        inputPassword.setError("Password salah!")
+                        FancyToast.makeText(applicationContext,jsonObj.getString("message"),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,true).show()
+                        //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
+                    }
+                }
+                override fun onFailure(call:
+                                       Call<ResponseCreate>, t: Throwable) {}
+            })
 
-            if (username.isEmpty()) {
-                inputUsername.setError("Username must be filled with text")
-            }
-            if (password.isEmpty()) {
-                inputPassword.setError("Password must be filled with text")
-            }
-            if (username == vUsername && password == vPassword) {
-                extras.putString("username", vUsername)
-                extras.putString("password", vPassword)
-                val intent = Intent(this@LoginActivity, MainPageActivity::class.java)
-                intent.putExtras(extras)
-                startActivity(intent)
-            }
-            if (username != checkUser && password != checkPass) {
-                inputUsername.setError("Username salah!")
-                inputPassword.setError("Password salah!")
-                inputUsername.getEditText()?.setText(vUsername)
-                inputPassword.getEditText()?.setText(vPassword)
-            }
-            if (username != vUsername) {
-                inputUsername.setError("Username salah!")
-            }
-            if (password != vPassword) {
-                inputPassword.setError("Password salah!")
-            }
+//            var checkUser = vUsername
+//            var checkPass = vPassword
+//
+//            if (username.isEmpty()) {
+//                inputUsername.setError("Username must be filled with text")
+//            }
+//            if (password.isEmpty()) {
+//                inputPassword.setError("Password must be filled with text")
+//            }
+//            if (username == vUsername && password == vPassword) {
+//                extras.putString("username", vUsername)
+//                extras.putString("password", vPassword)
+//                val intent = Intent(this@LoginActivity, MainPageActivity::class.java)
+//                intent.putExtras(extras)
+//                startActivity(intent)
+//            }
+//            if (username == "null") {
+//                inputUsername.setError("Username salah!")
+//            }
+//            if (password == "null") {
+//                inputPassword.setError("Password salah!")
+//            }
+//            if (username != checkUser && password != checkPass) {
+//                inputUsername.getEditText()?.setText(vUsername)
+//                inputPassword.getEditText()?.setText(vPassword)
+//            }
+
 
 
 //        btnLogin.setOnClickListener(View.OnClickListener {
