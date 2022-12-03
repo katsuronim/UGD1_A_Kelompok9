@@ -46,8 +46,12 @@ class FormAddUserActivity : AppCompatActivity() {
                     }else {
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
 
-                        txtUsername.setError(jsonObj.getString("message"))
-                        FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
+//                        txtUsername.setError(jsonObj.getString("message"))
+
+                        FancyToast.makeText(applicationContext,jsonObj.getString("message"),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,true).show()
+                        //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
                     }
                 }
                 override fun onFailure(call:
