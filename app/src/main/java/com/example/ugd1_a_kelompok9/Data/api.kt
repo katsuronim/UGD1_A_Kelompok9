@@ -33,4 +33,10 @@ interface api {
         @Field("tgl_lahir") tgllahir:String?,
         @Field("email") email:String?,
     ):Call<ResponseCreate>
+    @FormUrlEncoded
+    @POST("users/checkLogin")
+    fun checkLogin(
+        @Field("username") username:String?,
+        @Field("password") password:String?
+    ):Call<ResponseCreate>
 }
