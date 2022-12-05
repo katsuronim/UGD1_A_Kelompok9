@@ -11,6 +11,7 @@ import com.example.ugd1_a_kelompok9.Data.ResponseDataUser
 import com.example.ugd1_a_kelompok9.Data.UserData
 import com.example.ugd1_a_kelompok9.databinding.ActivityFormEditUserBinding
 import com.shashank.sony.fancytoastlib.FancyToast
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,7 +48,7 @@ class FormEditUserActivity : AppCompatActivity() {
                 val tgllahir = txtEditTgllahir.text.toString()
                 val email = txtEditEmail.text.toString()
 
-                RClient.instances.updateData(vId, nama,username,password,notelp,tgllahir,email).enqueue(object :
+                RClient.instances.updateData(vId,nama,username,password,notelp,tgllahir,email).enqueue(object :
                     Callback<ResponseCreate> {
                     override fun onResponse(
                         call: Call<ResponseCreate>,
@@ -56,6 +57,11 @@ class FormEditUserActivity : AppCompatActivity() {
                         if(response.isSuccessful) {
                             FancyToast.makeText(applicationContext,"${response.body()?.pesan}",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show()
                             finish()
+                        } else {
+                            val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+                            FancyToast.makeText(applicationContext,jsonObj.getString("message"),
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.ERROR,true).show()
                         }
                     }
                     override fun onFailure(call:

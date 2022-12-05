@@ -11,6 +11,7 @@ import com.example.ugd1_a_kelompok9.RClientDestination
 import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.databinding.ActivityFormEditDestinationBinding
 import com.shashank.sony.fancytoastlib.FancyToast
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,6 +64,11 @@ class FormEditDestinationActivity : AppCompatActivity() {
                         if (response.isSuccessful){
                             FancyToast.makeText(applicationContext,"${response.body()?.pesan}",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show()
                             finish()
+                        } else {
+                            val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+                            FancyToast.makeText(applicationContext,jsonObj.getString("message"),
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.ERROR,true).show()
                         }
                     }
 
