@@ -7,9 +7,6 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.*
-import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -134,6 +131,7 @@ class LoginActivityTest {
             )
         )
         materialButton3.perform(click())
+
         onView(isRoot()).perform(waitFor(3000))
 
         val textInputEditText4 = onView(
@@ -199,6 +197,7 @@ class LoginActivityTest {
         )
         materialButton4.perform(click())
         onView(isRoot()).perform(waitFor(3000))
+
     }
 
     private fun childAtPosition(
@@ -219,6 +218,7 @@ class LoginActivityTest {
         }
     }
 
+
     fun waitFor(delay: Long): ViewAction? {
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> {
@@ -234,4 +234,5 @@ class LoginActivityTest {
             }
         }
     }
+
 }
