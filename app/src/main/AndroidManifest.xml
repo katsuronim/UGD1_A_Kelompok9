@@ -137,5 +137,5 @@
 
         <receiver android:name=".NotificationReceiver" />
     </application>
-
+<!--ini command tambahan-->
 </manifest>

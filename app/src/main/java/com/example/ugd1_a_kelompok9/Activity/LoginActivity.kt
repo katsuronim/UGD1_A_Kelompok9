@@ -111,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
                         //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
                     }
                 }
-
+// ini command tambahan
                 override fun onFailure(
                     call:
                     Call<ResponseCreate>, t: Throwable
