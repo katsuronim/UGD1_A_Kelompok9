@@ -23,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class  LoginActivity : AppCompatActivity() {
+class  LoginActivity : AppCompatActivity() {//Coba
     var tv: ShimmerTextView? = null
     var shimmer: Shimmer? = null
     private lateinit var inputUsername: TextInputLayout
