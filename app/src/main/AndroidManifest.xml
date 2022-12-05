@@ -111,7 +111,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.RegisterActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.LoginActivity"
