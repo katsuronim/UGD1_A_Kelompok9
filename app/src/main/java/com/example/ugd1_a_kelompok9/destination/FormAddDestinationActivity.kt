@@ -59,8 +59,9 @@ class FormAddDestinationActivity : AppCompatActivity() {
                         finish()
                     }else{
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
-                        txtNama.setError(jsonObj.getString("message"))
-                        FancyToast.makeText(applicationContext,"Maaf sudah ada data",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
+                        FancyToast.makeText(applicationContext,jsonObj.getString("message"),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,true).show()
                     }
                 }
 

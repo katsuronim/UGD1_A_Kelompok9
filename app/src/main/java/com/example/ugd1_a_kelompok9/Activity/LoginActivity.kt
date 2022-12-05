@@ -86,8 +86,8 @@ class LoginActivity : AppCompatActivity() {
                     response: Response<ResponseCreate>
                 ) {
                     if(response.isSuccessful){
-                        extras.putString("username", vUsername)
-                        extras.putString("password", vPassword)
+                        extras.putString("username", username)
+                        extras.putString("password", password)
                         val intent = Intent(this@LoginActivity, MainPageActivity::class.java)
                         intent.putExtras(extras)
                         startActivity(intent)
