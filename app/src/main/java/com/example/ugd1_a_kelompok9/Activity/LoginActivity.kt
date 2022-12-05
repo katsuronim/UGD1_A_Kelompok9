@@ -61,14 +61,14 @@ class LoginActivity : AppCompatActivity() {
         shimmer = Shimmer()
         shimmer!!.start(tv)
 
-        btnClear.setOnClickListener{
+        btnClear.setOnClickListener {
             inputUsername.getEditText()?.setText("")
             inputPassword.getEditText()?.setText("")
 
             Snackbar.make(mainLayout, "Text Cleared Success", Snackbar.LENGTH_LONG).show()
         }
 
-        btnRegister.setOnClickListener{
+        btnRegister.setOnClickListener {
             val moveRegister = Intent(this, FormAddUserActivity::class.java)
             startActivity(moveRegister)
         }
@@ -79,36 +79,44 @@ class LoginActivity : AppCompatActivity() {
             val password: String = inputPassword.getEditText()?.getText().toString()
 
 //            getDataDetail(username)
-            RClient.instances.checkLogin(username,password).enqueue(object :
+            RClient.instances.checkLogin(username, password).enqueue(object :
                 Callback<ResponseCreate> {
                 override fun onResponse(
                     call: Call<ResponseCreate>,
                     response: Response<ResponseCreate>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         extras.putString("username", username)
                         extras.putString("password", password)
                         val intent = Intent(this@LoginActivity, MainPageActivity::class.java)
                         intent.putExtras(extras)
                         startActivity(intent)
-                        FancyToast.makeText(applicationContext,"${response.body()?.pesan}",
+                        FancyToast.makeText(
+                            applicationContext, "${response.body()?.pesan}",
                             FancyToast.LENGTH_LONG,
-                            FancyToast.SUCCESS,true).show()
+                            FancyToast.SUCCESS, true
+                        ).show()
                         finish()
-                    }else {
+                    } else {
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
 
 //                        txtUsername.setError(jsonObj.getString("message"))
                         inputUsername.setError("Username salah!")
                         inputPassword.setError("Password salah!")
-                        FancyToast.makeText(applicationContext,jsonObj.getString("message"),
+                        FancyToast.makeText(
+                            applicationContext, jsonObj.getString("message"),
                             FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,true).show()
+                            FancyToast.ERROR, true
+                        ).show()
                         //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
                     }
                 }
-                override fun onFailure(call:
-                                       Call<ResponseCreate>, t: Throwable) {}
+
+                override fun onFailure(
+                    call:
+                    Call<ResponseCreate>, t: Throwable
+                ) {
+                }
             })
 
 //            var checkUser = vUsername
@@ -137,7 +145,6 @@ class LoginActivity : AppCompatActivity() {
 //                inputUsername.getEditText()?.setText(vUsername)
 //                inputPassword.getEditText()?.setText(vPassword)
 //            }
-
 
 
 //        btnLogin.setOnClickListener(View.OnClickListener {
@@ -209,32 +216,6 @@ class LoginActivity : AppCompatActivity() {
 //            }
 
 
-        })
-    }
-
-
-    fun getDataDetail(user:String){
-//        val username = b?.getString("username")
-//        user?.let { getDataDetail(it) }
-
-        RClient.instances.getData(user).enqueue(object : Callback<ResponseDataUser> {
-            override fun onResponse(
-                call: Call<ResponseDataUser>,
-                response: Response<ResponseDataUser>
-            ) {
-                if(response.isSuccessful){
-                    response.body()?.let {
-                        listUser.addAll(it.data) }
-                    with(binding) {
-//                        checkUsername.getEditText()?.setText(listUser[0].username)
-//                        checkUsername.getEditText()?.setText(listUser[0].password)
-                        vUsername = listUser[0].username
-                        vPassword = listUser[0].password
-                    }
-                }
-            }
-            override fun onFailure(call: Call<ResponseDataUser>, t: Throwable) {
-            }
         })
     }
 }
