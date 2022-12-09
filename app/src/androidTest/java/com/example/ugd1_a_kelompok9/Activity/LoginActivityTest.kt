@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -30,11 +32,6 @@ class LoginActivityTest {
 
     @Test
     fun loginActivityTest() {
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(500)
-
         val materialButton = onView(
             allOf(
                 withId(R.id.btnLogin), withText("Login"),
@@ -52,6 +49,7 @@ class LoginActivityTest {
             )
         )
         materialButton.perform(click())
+        onView(isRoot()).perform(waitFor(3000))
 
         val textInputEditText = onView(
             allOf(
@@ -79,9 +77,7 @@ class LoginActivityTest {
                 isDisplayed()
             )
         )
-        textInputEditText2.perform(replaceText("avila"), closeSoftKeyboard())
-
-        pressBack()
+        textInputEditText2.perform(replaceText("savior"), closeSoftKeyboard())
 
         val materialButton2 = onView(
             allOf(
@@ -100,6 +96,7 @@ class LoginActivityTest {
             )
         )
         materialButton2.perform(click())
+        onView(isRoot()).perform(waitFor(3000))
 
         val textInputEditText3 = onView(
             allOf(
@@ -113,10 +110,7 @@ class LoginActivityTest {
                 isDisplayed()
             )
         )
-        textInputEditText3.perform(replaceText("avila123"), closeSoftKeyboard())
-
-        pressBack()
-
+        textInputEditText3.perform(replaceText("savior123"), closeSoftKeyboard())
         val materialButton3 = onView(
             allOf(
                 withId(R.id.btnLogin), withText("Login"),
@@ -134,6 +128,56 @@ class LoginActivityTest {
             )
         )
         materialButton3.perform(click())
+        onView(isRoot()).perform(waitFor(3000))
+
+        val textInputEditText4 = onView(
+            allOf(
+                withText("savior123"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.inputLayoutPassword),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText4.perform(replaceText("123"))
+
+        val textInputEditText5 = onView(
+            allOf(
+                withText("123"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.inputLayoutPassword),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText5.perform(closeSoftKeyboard())
+
+        val materialButton4 = onView(
+            allOf(
+                withId(R.id.btnLogin), withText("Login"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.linearLayout2),
+                        childAtPosition(
+                            withId(R.id.mainLayout),
+                            3
+                        )
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        materialButton4.perform(click())
+        onView(isRoot()).perform(waitFor(3000))
     }
 
     private fun childAtPosition(
@@ -150,6 +194,22 @@ class LoginActivityTest {
                 val parent = view.parent
                 return parent is ViewGroup && parentMatcher.matches(parent)
                         && view == parent.getChildAt(position)
+            }
+        }
+    }
+
+    fun waitFor(delay: Long): ViewAction? {
+        return object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return isRoot()
+            }
+
+            override fun getDescription(): String {
+                return "wait for " + delay + "milliseconds"
+            }
+
+            override fun perform(uiController: UiController, view: View?) {
+                uiController.loopMainThreadForAtLeast(delay)
             }
         }
     }
