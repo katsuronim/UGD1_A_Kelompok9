@@ -19,7 +19,7 @@ import retrofit2.Response
 
 class FormEditUserActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFormEditUserBinding
-    private var vUsername: String = ""
+    private var vEmail: String = ""
     private var vPassword: String = ""
     private var vId: Int = 0
     private val listUser = ArrayList<UserData>()
@@ -35,9 +35,9 @@ class FormEditUserActivity : AppCompatActivity() {
 //
 //        val extras = intent.extras
 
-        vUsername = intent.getStringExtra("username").toString()
+        vEmail = intent.getStringExtra("email").toString()
         vPassword = intent.getStringExtra("password").toString()
-        getDetailData(vUsername)
+        getDetailData(vEmail)
 
         binding.btnUpdate.setOnClickListener {
             with(binding) {

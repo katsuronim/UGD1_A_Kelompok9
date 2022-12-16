@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ugd1_a_kelompok9.Activity.DetailTransportationActivity
 import com.example.ugd1_a_kelompok9.databinding.ListDataTransportationBinding
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
 
 class TransportationAdapter (
     private val listTransportation:ArrayList<TransportationData>,
@@ -30,6 +31,7 @@ class TransportationAdapter (
             }
         }
     }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType:
         Int): TransportationViewHolder {
             return TransportationViewHolder(
@@ -41,4 +43,5 @@ class TransportationAdapter (
         override fun onBindViewHolder(holder: TransportationViewHolder, position: Int) { holder.bind(listTransportation[position])
         }
         override fun getItemCount(): Int = listTransportation.size
+
 }

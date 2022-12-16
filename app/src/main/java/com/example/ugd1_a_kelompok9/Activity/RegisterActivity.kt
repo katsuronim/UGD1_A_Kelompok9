@@ -18,6 +18,7 @@ import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.databinding.ActivityRegisterBinding
 import com.example.ugd1_a_kelompok9.room.User
 import com.example.ugd1_a_kelompok9.room.UserDB
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,17 +31,7 @@ class RegisterActivity : AppCompatActivity() {
     private val CHANNEL_ID_2 = "channel_notification_02"
     private val notificationId1 = 101
     private val notificationId2 = 102
-//    private lateinit var email: TextInputEditText
-//    private lateinit var vEmail: TextInputLayout
-//    private lateinit var noTelp: TextInputEditText
-//    private lateinit var vnoTelp: TextInputLayout
-//    private lateinit var tanggalLahir: TextInputEditText
-//    private lateinit var vTglLahir: TextInputLayout
-//    private lateinit var username: TextInputEditText
-//    private lateinit var vUsername: TextInputLayout
-//    private lateinit var password: TextInputEditText
-//    private lateinit var vPassword: TextInputLayout
-//    private lateinit var btnRegister: Button
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +40,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root!!)
 
         createNotificationChannel()
+
+        auth = FirebaseAuth.getInstance()
 
         db = Room.databaseBuilder(applicationContext, UserDB::class.java, "appUser.db").build()
         binding!!.btnRegister.setOnClickListener {
