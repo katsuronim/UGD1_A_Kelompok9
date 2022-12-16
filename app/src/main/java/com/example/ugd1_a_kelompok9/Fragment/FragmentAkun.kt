@@ -26,7 +26,7 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
 
     private var b:Bundle? = null
     private val listUser = ArrayList<UserData>()
-    private var username: String = ""
+    private var email: String = ""
     private var password: String = ""
 
     private lateinit var userDb: UserDB
@@ -42,58 +42,24 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
 
         val activity: MainPageActivity? = activity as MainPageActivity?
         _binding = FragmentAkunBinding.inflate(inflater, container, false)
-        username = activity!!.getUsername()
+        email = activity!!.getEmail()
         password = activity!!.getPassword()
 
-        val rootView: View = inflater.inflate(R.layout.fragment_akun, container, false)
-//        val username = b?.getString("username")
-        binding.etUsername.setText(username)
-        username?.let { getDataDetail(it) }
-//        sharePreference = SharePreference(requireContext())
-//        userDb = UserDB.getDatabase(requireContext())
-        //userDb = Room.databaseBuilder(applicationContext, UserDB::class.java, "appUser.db").build()
-
-//        var id = sharePreference.getUser()?.userID.toString()
-//        val nama = sharePreference.getUser()?.name
-//        val username = sharePreference.getUser()?.username
-//        var password = sharePreference.getUser()?.password
-//        val tanggalLahir = sharePreference.getUser()?.tanggalLahir
-//        val noTelp = sharePreference.getUser()?.noTelp
-//        val email = sharePreference.getUser()?.email
-
-        if (username != null) {
-            getDataDetail(username)
-        }
-        binding.etUsername.setText(username)
+        binding.etEmail.setText(email)
+        email?.let { getDataDetail(it) }
 
         binding.btnUpdate.setOnClickListener {
             val intent = Intent(requireActivity(), FormEditUserActivity::class.java)
-            intent.putExtra("username", username)
+            intent.putExtra("email", email)
             intent.putExtra("password", password)
             startActivity(intent)
-//            CoroutineScope(Dispatchers.IO).launch {
-//                val userId = id
-//                val nama = binding.LayoutNama.getEditText()?.getText().toString()
-//                val username = binding.LayoutUsername.getEditText()?.getText().toString()
-//                val pass = password
-//                val tanggalLahir = binding.LayoutTanggalLahir.getEditText()?.getText().toString()
-//                val telp = binding.LayoutTelp.getEditText()?.getText().toString()
-//                val email = binding.LayoutEmail.getEditText()?.getText().toString()
-//
-//                userDb.userDao().updateUser(userId,nama,username,pass,email,tanggalLahir,telp)
-//                val user =userDb.userDao().getUserID(userId)
-//                sharePreference.setUser(user)
-//            }
-//
-//            Toast.makeText(context, "Berhasil Update", Toast.LENGTH_LONG).show()
-
         }
         return binding.root
     }
 
     fun getDataDetail(user:String){
-        val username = b?.getString("username")
-        username?.let { getDataDetail(it) }
+        val email = b?.getString("email")
+        email?.let { getDataDetail(it) }
 
         RClient.instances.getData(user).enqueue(object : Callback<ResponseDataUser> {
             override fun onResponse(

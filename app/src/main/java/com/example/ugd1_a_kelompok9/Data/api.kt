@@ -36,7 +36,7 @@ interface api {
     @FormUrlEncoded
     @POST("users/checkLogin")
     fun checkLogin(
-        @Field("username") username:String?,
+        @Field("email") email:String?,
         @Field("password") password:String?
     ):Call<ResponseCreate>
 }

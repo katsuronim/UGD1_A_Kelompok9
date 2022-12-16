@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var inputUsername: TextInputLayout
+    private lateinit var inputEmail: TextInputLayout
     private lateinit var inputPassword: TextInputLayout
     private lateinit var mainLayout: ConstraintLayout
     lateinit var mBundle: Bundle
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         getBundle()
 
-        inputUsername = findViewById(R.id.inputLayoutUsername)
+        inputEmail = findViewById(R.id.inputLayoutEmail)
         inputPassword = findViewById(R.id.inputLayoutPassword)
         mainLayout = findViewById(R.id.mainLayout)
         val btnClear: Button = findViewById(R.id.btnClear)
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val btnRegister: Button = findViewById(R.id.btnRegister)
 
         btnClear.setOnClickListener{
-            inputUsername.getEditText()?.setText("")
+            inputEmail.getEditText()?.setText("")
             inputPassword.getEditText()?.setText("")
 
             Snackbar.make(mainLayout, "Text Cleared Success", Snackbar.LENGTH_LONG).show()
@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener(View.OnClickListener {
             var checkLogin = false
-            val username: String = inputUsername.getEditText()?.getText().toString()
+            val email: String = inputEmail.getEditText()?.getText().toString()
             val password: String = inputPassword.getEditText()?.getText().toString()
 
-            if (username == "admin" && password == "kelompok9") checkLogin = true
-            if (username != "admin" && password != "kelompok9") {
-                if(username.isEmpty()){
-                    inputUsername.setError("Username must be filled with text")
+            if (email == "admin" && password == "kelompok9") checkLogin = true
+            if (email != "admin" && password != "kelompok9") {
+                if(email.isEmpty()){
+                    inputEmail.setError("Email must be filled with text")
                     checkLogin = false
                 }
                 if (password.isEmpty()){
@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
                     checkLogin = false
                 }
 
-                if (username.isNotEmpty() && password.isNotEmpty()) {
-                    inputUsername.setError("Username salah!")
+                if (email.isNotEmpty() && password.isNotEmpty()) {
+                    inputEmail.setError("Username salah!")
                     inputPassword.setError("Password salah!")
                     checkLogin = false
                 }
@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity() {
 
     fun getBundle(){
         val bundle: Bundle? = intent.extras
-        val name: String? = bundle?.getString("username")
+        val email: String? = bundle?.getString("email")
 
-        inputUsername = findViewById(R.id.inputLayoutUsername)
-        inputUsername.getEditText()?.setText(name)
+        inputEmail = findViewById(R.id.inputLayoutEmail)
+        inputEmail.getEditText()?.setText(email)
     }
 }

@@ -13,7 +13,7 @@ import com.example.ugd1_a_kelompok9.R
 
 
 class MainPageActivity : AppCompatActivity() {
-    private var username: String = ""
+    private var email: String = ""
     private var password: String = ""
 
 
@@ -25,7 +25,7 @@ class MainPageActivity : AppCompatActivity() {
 
         val extras = intent.extras
 
-        username = extras!!.getString("username").toString()
+        email = extras!!.getString("email").toString()
         password = extras!!.getString("password").toString()
         val firstFragment= FragmentMain()
         val secondFragment= FragmentAkun()
@@ -63,8 +63,8 @@ class MainPageActivity : AppCompatActivity() {
             commit()
         }
 
-    public fun getUsername(): String {
-        return username
+    public fun getEmail(): String {
+        return email
     }
 
     public fun getPassword(): String {

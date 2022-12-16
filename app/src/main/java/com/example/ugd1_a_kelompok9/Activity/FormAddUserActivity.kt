@@ -1,11 +1,14 @@
 package com.example.ugd1_a_kelompok9.Activity
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.ugd1_a_kelompok9.Data.RClient
 import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.databinding.ActivityFormAddUserBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.shashank.sony.fancytoastlib.FancyToast
 import org.json.JSONObject
 import retrofit2.Call
@@ -14,12 +17,34 @@ import retrofit2.Response
 
 class FormAddUserActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFormAddUserBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFormAddUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
         binding.btnAdd.setOnClickListener {
-            saveData()
+            auth.createUserWithEmailAndPassword(binding.txtEmail.text.toString(), binding.txtPassword.text.toString())
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        auth.currentUser?.sendEmailVerification()?.addOnCompleteListener(this){ task ->
+                            if(task.isSuccessful){
+                                FancyToast.makeText(applicationContext,"Register Berhasil, Mohon cek email anda untuk verifikasi!",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.SUCCESS,true).show()
+                                saveData()
+                            } else {
+                                FancyToast.makeText(applicationContext,task.exception.toString(),
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,true).show()
+                            }
+                        }
+                    } else {
+                        FancyToast.makeText(applicationContext,task.exception.toString(),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,true).show()
+                    }
+                }
         }
     }
     fun saveData(){
