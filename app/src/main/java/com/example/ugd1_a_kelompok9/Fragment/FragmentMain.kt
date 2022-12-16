@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.ugd1_a_kelompok9.Activity.EditDestinationActivity
 import com.example.ugd1_a_kelompok9.Activity.QRCodeActivity
 import com.example.ugd1_a_kelompok9.Activity.ReadDestinationActivity
+import com.example.ugd1_a_kelompok9.Activity.ShakeKuponActivity
 import com.example.ugd1_a_kelompok9.R
 import com.example.ugd1_a_kelompok9.SharePreference
 import com.example.ugd1_a_kelompok9.Transportation.ReadTransportationActivity
@@ -48,6 +49,11 @@ class FragmentMain:Fragment(R.layout.fragment_main) {
         }
         binding.btnListTransportasi.setOnClickListener{
             val intent = Intent(requireActivity(), ReadTransportationActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnAccelerometer.setOnClickListener{
+            val intent = Intent(requireActivity(), ShakeKuponActivity::class.java)
             startActivity(intent)
         }
         return binding.root

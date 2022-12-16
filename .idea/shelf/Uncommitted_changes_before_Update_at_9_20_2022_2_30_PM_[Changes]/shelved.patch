@@ -1,0 +1,667 @@
+Index: app/src/main/java/com/example/ugd1_a_kelompok9/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ugd1_a_kelompok9\r\n\r\nimport android.content.Intent\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.view.View\r\nimport android.widget.Button\r\nimport androidx.constraintlayout.widget.ConstraintLayout\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.google.android.material.textfield.TextInputEditText\r\nimport com.google.android.material.textfield.TextInputLayout\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n    private lateinit var inputUsername: TextInputLayout\r\n    private lateinit var inputPassword: TextInputLayout\r\n    private lateinit var mainLayout: ConstraintLayout\r\n    lateinit var mBundle: Bundle\r\n    lateinit var vUsername: String\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_main)\r\n\r\n        setTitle(\"User Login\")\r\n\r\n        getBundle()\r\n\r\n        inputUsername = findViewById(R.id.inputLayoutUsername)\r\n        inputPassword = findViewById(R.id.inputLayoutPassword)\r\n        mainLayout = findViewById(R.id.mainLayout)\r\n        val btnClear: Button = findViewById(R.id.btnClear)\r\n        val btnLogin: Button = findViewById(R.id.btnLogin)\r\n        val btnRegister: Button = findViewById(R.id.btnRegister)\r\n\r\n        btnClear.setOnClickListener{\r\n            inputUsername.getEditText()?.setText(\"\")\r\n            inputPassword.getEditText()?.setText(\"\")\r\n\r\n            Snackbar.make(mainLayout, \"Text Cleared Success\", Snackbar.LENGTH_LONG).show()\r\n        }\r\n\r\n        btnRegister.setOnClickListener{\r\n            val moveRegister = Intent(this, RegisterActivity::class.java)\r\n            startActivity(moveRegister)\r\n        }\r\n\r\n        btnLogin.setOnClickListener(View.OnClickListener {\r\n            var checkLogin = false\r\n            val username: String = inputUsername.getEditText()?.getText().toString()\r\n            val password: String = inputPassword.getEditText()?.getText().toString()\r\n\r\n            if (username == \"admin\" && password == \"kelompok9\") checkLogin = true\r\n            if (username != \"admin\" && password != \"kelompok9\") {\r\n                if(username.isEmpty()){\r\n                    inputUsername.setError(\"Username must be filled with text\")\r\n                    checkLogin = false\r\n                }\r\n                if (password.isEmpty()){\r\n                    inputPassword.setError(\"Password must be filled with text\")\r\n                    checkLogin = false\r\n                }\r\n\r\n                if (username.isNotEmpty() && password.isNotEmpty()) {\r\n                    inputUsername.setError(\"Username salah!\")\r\n                    inputPassword.setError(\"Password salah!\")\r\n                    checkLogin = false\r\n                }\r\n\r\n                return@OnClickListener\r\n            }\r\n            val moveHome = Intent(this@MainActivity, MainPageActivity::class.java)\r\n            startActivity(moveHome)\r\n        })\r\n    }\r\n\r\n    fun getBundle(){\r\n        val bundle: Bundle? = intent.extras\r\n        val name: String? = bundle?.getString(\"username\")\r\n\r\n        inputUsername = findViewById(R.id.inputLayoutUsername)\r\n        inputUsername.getEditText()?.setText(name)\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/ugd1_a_kelompok9/MainActivity.kt b/app/src/main/java/com/example/ugd1_a_kelompok9/MainActivity.kt
+--- a/app/src/main/java/com/example/ugd1_a_kelompok9/MainActivity.kt	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/java/com/example/ugd1_a_kelompok9/MainActivity.kt	(date 1663658807807)
+@@ -21,8 +21,6 @@
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_main)
+ 
+-        setTitle("User Login")
+-
+         getBundle()
+ 
+         inputUsername = findViewById(R.id.inputLayoutUsername)
+@@ -76,9 +74,13 @@
+     fun getBundle(){
+         val bundle: Bundle? = intent.extras
+         val name: String? = bundle?.getString("username")
++        val pass: String? = bundle?.getString("password")
+ 
+         inputUsername = findViewById(R.id.inputLayoutUsername)
+         inputUsername.getEditText()?.setText(name)
++
++        inputPassword = findViewById(R.id.inputLayoutPassword)
++        inputPassword.getEditText()?.setText(pass)
+     }
+ 
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/mainLayout\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".MainActivity\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView\"\r\n        android:layout_width=\"240dp\"\r\n        android:layout_height=\"240dp\"\r\n        android:layout_marginTop=\"32dp\"\r\n        android:layout_marginBottom=\"459dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:srcCompat=\"@drawable/gambar\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView\"\r\n        style=\"@style/TextAppearance.MaterialComponents.Headline4\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"User Login\"\r\n        android:textColor=\"@color/black\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageView\"\r\n        app:layout_constraintStart_toStartOf=\"@id/imageView\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/imageView\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/linearLayout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:orientation=\"vertical\"\r\n        android:paddingTop=\"16dp\"\r\n        android:paddingBottom=\"16dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView\">\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:id=\"@+id/inputLayoutUsername\"\r\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginBottom=\"8dp\"\r\n            android:hint=\"Username\"\r\n            app:errorEnabled=\"true\"\r\n            app:startIconDrawable=\"@drawable/ic_user_24\">\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:inputType=\"text\" />\r\n\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:id=\"@+id/inputLayoutPassword\"\r\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Password\"\r\n            app:errorEnabled=\"true\"\r\n            app:helperText=\"Masukkan password anda\"\r\n            app:startIconDrawable=\"@drawable/ic_lock_24\">\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:inputType=\"textPassword\" />\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/linearLayout2\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/linearLayout\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/linearLayout\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/linearLayout\">\r\n\r\n        <com.google.android.material.button.MaterialButton\r\n            android:id=\"@+id/btnClear\"\r\n            style=\"@style/Widget.MaterialComponents.Button.TextButton\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"Clear Field\" />\r\n\r\n        <com.google.android.material.button.MaterialButton\r\n            android:id=\"@+id/btnLogin\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"Login\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/linearLayout3\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"5dp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/linearLayout2\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/linearLayout2\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/linearLayout2\">\r\n\r\n    <com.google.android.material.button.MaterialButton\r\n        android:id=\"@+id/btnRegister\"\r\n        style=\"@style/Widget.MaterialComponents.Button.TextButton\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_weight=\"1\"\r\n        android:text=\"Belum punya akun? klik disini!\"\r\n        android:textColor=\"#808080\"/>\r\n    </LinearLayout>\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1663658807812)
+@@ -5,7 +5,7 @@
+     android:id="@+id/mainLayout"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".MainActivity">
++    tools:context=".MainActivity" >
+ 
+     <ImageView
+         android:id="@+id/imageView"
+Index: app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable-v24/ic_launcher_foreground.xml b/app/src/main/res/drawable/ic_launcher_foreground.xml
+rename from app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+rename to app/src/main/res/drawable/ic_launcher_foreground.xml
+--- a/app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/drawable/ic_launcher_foreground.xml	(date 1663658807808)
+@@ -4,13 +4,14 @@
+     android:height="108dp"
+     android:viewportWidth="108"
+     android:viewportHeight="108">
+-    <path android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
++    <path
++        android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
+         <aapt:attr name="android:fillColor">
+             <gradient
+-                android:endX="85.84757"
++                android:startY="49.59793"
++                android:startX="42.9492"
+                 android:endY="92.4963"
+-                android:startX="42.9492"
+-                android:startY="49.59793"
++                android:endX="85.84757"
+                 android:type="linear">
+                 <item
+                     android:color="#44000000"
+@@ -22,9 +23,9 @@
+         </aapt:attr>
+     </path>
+     <path
++        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
+         android:fillColor="#FFFFFF"
+         android:fillType="nonZero"
+-        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
+         android:strokeWidth="1"
+-        android:strokeColor="#00000000" />
++        android:strokeColor="#00000000"/>
+ </vector>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".RegisterActivity\">\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/regUsername\"\r\n        android:layout_width=\"307dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginTop=\"124dp\"\r\n        android:layout_marginBottom=\"561dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Usesrname\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/inputUsername\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Username\"/>\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/regEmail\"\r\n        android:layout_width=\"307dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginTop=\"306dp\"\r\n        android:layout_marginBottom=\"379dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Email\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/inputEmail\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Email\"/>\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/regTanggalLahir\"\r\n        android:layout_width=\"307dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginTop=\"389dp\"\r\n        android:layout_marginBottom=\"296dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Tanggal Lahir\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/inputTanggalLahir\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Tanggal Lahir\" />\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/regPassword\"\r\n        android:layout_width=\"307dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginTop=\"217dp\"\r\n        android:layout_marginBottom=\"468dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Password\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/inputPassword\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Password\"/>\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:id=\"@+id/regNoTelp\"\r\n        android:layout_width=\"307dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginTop=\"1dp\"\r\n        android:layout_marginBottom=\"75dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Nomor Telepon\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/btnRegister\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/regPassword\"\r\n        app:layout_constraintVertical_bias=\"1.0\">\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/inputNoTelp\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Nomor Telepon\" />\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <Button\r\n        android:id=\"@+id/btnRegister\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"596dp\"\r\n        android:text=\"REGISTER\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.498\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_register.xml b/app/src/main/res/layout/activity_register.xml
+--- a/app/src/main/res/layout/activity_register.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/layout/activity_register.xml	(date 1663658807812)
+@@ -24,7 +24,8 @@
+             android:id="@+id/inputUsername"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:hint="Username"/>
++            android:inputType="text"
++            android:hint="Username" />
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+ 
+@@ -46,6 +47,7 @@
+             android:id="@+id/inputEmail"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
++            android:inputType="text"
+             android:hint="Email"/>
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+@@ -67,6 +69,7 @@
+             android:id="@+id/inputTanggalLahir"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
++            android:inputType="text"
+             android:hint="Tanggal Lahir" />
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+@@ -88,6 +91,7 @@
+             android:id="@+id/inputPassword"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
++            android:inputType="text"
+             android:hint="Password"/>
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+@@ -110,6 +114,7 @@
+             android:id="@+id/inputNoTelp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
++            android:inputType="text"
+             android:hint="Nomor Telepon" />
+     </com.google.android.material.textfield.TextInputLayout>
+ 
+Index: app/src/main/res/layout/rv_item_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:orientation=\"vertical\"\r\n    android:padding=\"20dp\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_username\"\r\n        style=\"@style/TextAppearance.MaterialComponents.Headline5\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"14dp\"\r\n        android:text=\"Username\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"/>\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_details\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Email - Password\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/tv_username\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.054\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.761\"/>\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/rv_item_user.xml b/app/src/main/res/layout/rv_item_user.xml
+--- a/app/src/main/res/layout/rv_item_user.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/layout/rv_item_user.xml	(date 1663658807816)
+@@ -1,31 +1,59 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:orientation="vertical"
+     android:padding="20dp">
+ 
++    <androidx.cardview.widget.CardView
++        android:layout_width="80dp"
++        android:layout_height="80dp"
++        android:layout_margin="16dp"
++        app:cardCornerRadius="40dp"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" >
++
++    <ImageView
++        android:id="@+id/profilePic"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:adjustViewBounds="true"
++        android:scaleType="centerCrop"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:srcCompat="@drawable/profile3" />
++
++    </androidx.cardview.widget.CardView>
++
+     <TextView
+         android:id="@+id/tv_username"
+         style="@style/TextAppearance.MaterialComponents.Headline5"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginStart="14dp"
++        android:layout_marginStart="148dp"
++        android:layout_marginEnd="134dp"
+         android:text="Username"
+         app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"/>
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.64" />
+ 
+     <TextView
+         android:id="@+id/tv_details"
+         android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
++        android:layout_height="28dp"
+         android:text="Email - Password"
++        app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintBottom_toTopOf="@id/tv_username"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.054"
++        app:layout_constraintHorizontal_bias="0.64"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.761"/>
++        app:layout_constraintVertical_bias="0.51" />
++
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_launcher_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:width=\"108dp\"\r\n    android:height=\"108dp\"\r\n    android:viewportWidth=\"108\"\r\n    android:viewportHeight=\"108\">\r\n    <path\r\n        android:fillColor=\"#3DDC84\"\r\n        android:pathData=\"M0,0h108v108h-108z\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M9,0L9,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M19,0L19,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M29,0L29,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M39,0L39,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M49,0L49,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M59,0L59,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M69,0L69,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M79,0L79,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M89,0L89,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M99,0L99,108\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,9L108,9\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,19L108,19\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,29L108,29\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,39L108,39\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,49L108,49\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,59L108,59\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,69L108,69\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,79L108,79\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,89L108,89\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M0,99L108,99\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M19,29L89,29\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M19,39L89,39\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M19,49L89,49\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M19,59L89,59\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M19,69L89,69\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M19,79L89,79\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M29,19L29,89\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M39,19L39,89\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M49,19L49,89\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M59,19L59,89\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M69,19L69,89\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n    <path\r\n        android:fillColor=\"#00000000\"\r\n        android:pathData=\"M79,19L79,89\"\r\n        android:strokeWidth=\"0.8\"\r\n        android:strokeColor=\"#33FFFFFF\" />\r\n</vector>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_launcher_background.xml b/app/src/main/res/drawable/ic_launcher_background.xml
+--- a/app/src/main/res/drawable/ic_launcher_background.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/drawable/ic_launcher_background.xml	(date 1663658807808)
+@@ -1,170 +1,74 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:width="108dp"
++<vector
+     android:height="108dp"
++    android:width="108dp"
++    android:viewportHeight="108"
+     android:viewportWidth="108"
+-    android:viewportHeight="108">
+-    <path
+-        android:fillColor="#3DDC84"
+-        android:pathData="M0,0h108v108h-108z" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M9,0L9,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,0L19,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,0L29,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,0L39,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,0L49,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,0L59,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,0L69,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,0L79,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M89,0L89,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M99,0L99,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,9L108,9"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,19L108,19"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,29L108,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,39L108,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,49L108,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,59L108,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,69L108,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,79L108,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,89L108,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,99L108,99"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,29L89,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,39L89,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,49L89,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,59L89,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,69L89,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,79L89,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,19L29,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,19L39,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,19L49,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,19L59,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,19L69,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,19L79,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
++    xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="#3DDC84"
++          android:pathData="M0,0h108v108h-108z"/>
++    <path android:fillColor="#00000000" android:pathData="M9,0L9,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,0L19,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M29,0L29,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M39,0L39,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M49,0L49,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M59,0L59,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M69,0L69,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M79,0L79,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M89,0L89,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M99,0L99,108"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,9L108,9"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,19L108,19"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,29L108,29"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,39L108,39"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,49L108,49"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,59L108,59"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,69L108,69"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,79L108,79"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,89L108,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M0,99L108,99"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,29L89,29"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,39L89,39"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,49L89,49"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,59L89,59"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,69L89,69"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M19,79L89,79"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M29,19L29,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M39,19L39,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M49,19L49,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M59,19L59,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M69,19L69,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
++    <path android:fillColor="#00000000" android:pathData="M79,19L79,89"
++          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+ </vector>
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<adaptive-icon xmlns:android=\"http://schemas.android.com/apk/res/android\">\r\n    <background android:drawable=\"@drawable/ic_launcher_background\" />\r\n    <foreground android:drawable=\"@drawable/ic_launcher_foreground\" />\r\n</adaptive-icon>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml b/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+--- a/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(date 1663658807816)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++    <background android:drawable="@drawable/ic_launcher_background"/>
++    <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+ </adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".MainPageActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/firstFragment\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:text=\"Ini Halaman Utama\"\r\n        android:textColor=\"#25316D\"\r\n        android:textSize=\"40sp\"\r\n        android:textStyle=\"italic|bold\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n</FrameLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_main.xml b/app/src/main/res/layout/fragment_main.xml
+--- a/app/src/main/res/layout/fragment_main.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/layout/fragment_main.xml	(date 1663658807815)
+@@ -10,10 +10,11 @@
+         android:id="@+id/firstFragment"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+-        android:text="Ini Halaman Utama"
++        android:text="Halaman Utama"
+         android:textColor="#25316D"
+         android:textSize="40sp"
+         android:textStyle="italic|bold"
++        android:gravity="center"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<adaptive-icon xmlns:android=\"http://schemas.android.com/apk/res/android\">\r\n    <background android:drawable=\"@drawable/ic_launcher_background\" />\r\n    <foreground android:drawable=\"@drawable/ic_launcher_foreground\" />\r\n</adaptive-icon>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml b/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+--- a/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(date 1663658807816)
+@@ -1,5 +1,5 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++    <background android:drawable="@drawable/ic_launcher_background"/>
++    <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+ </adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/java/com/example/ugd1_a_kelompok9/RVUserAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ugd1_a_kelompok9\r\n\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.TextView\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.example.ugd1_a_kelompok9.entity.User\r\n\r\nclass RVUserAdapter (private val data: Array<User>) : RecyclerView.Adapter<RVUserAdapter.viewHolder>(){\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder{\r\n        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_user, parent, false)\r\n        return viewHolder(itemView)\r\n    }\r\n\r\n    override fun onBindViewHolder(holder: viewHolder, position: Int){\r\n        val currentItem = data[position]\r\n        holder.tvUsername.text = currentItem.username\r\n        holder.tvDetail.text = \"${currentItem.email} - ${currentItem.password}\"\r\n    }\r\n\r\n    override fun getItemCount(): Int {\r\n        return data.size\r\n    }\r\n\r\n    class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){\r\n        val tvUsername: TextView = itemView.findViewById(R.id.tv_username)\r\n        val tvDetail: TextView = itemView.findViewById(R.id.tv_details)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/ugd1_a_kelompok9/RVUserAdapter.kt b/app/src/main/java/com/example/ugd1_a_kelompok9/RVUserAdapter.kt
+--- a/app/src/main/java/com/example/ugd1_a_kelompok9/RVUserAdapter.kt	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/java/com/example/ugd1_a_kelompok9/RVUserAdapter.kt	(date 1663658807807)
+@@ -3,6 +3,7 @@
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
++import android.widget.ImageView
+ import android.widget.TextView
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.ugd1_a_kelompok9.entity.User
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Semester 5/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_spalash_screen.xml\" value=\"0.17552083333333332\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/.idea/misc.xml	(date 1663658980004)
+@@ -3,7 +3,28 @@
+   <component name="DesignSurface">
+     <option name="filePathToZoomLevelMap">
+       <map>
+-        <entry key="..\:/Semester 5/UGD1_A_Kelompok9/UGD1_A_Kelompok9/app/src/main/res/layout/activity_spalash_screen.xml" value="0.17552083333333332" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/drawable/ic_admin_24.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/drawable/ic_home_24.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/drawable/ic_lock_24.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/drawable/ic_logout_24.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/drawable/ic_user_24.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_fragment_main.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_home.xml" value="0.1286231884057971" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_main.xml" value="0.22" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_main_page.xml" value="0.14666666666666667" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_next_register.xml" value="0.2" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/activity_register.xml" value="0.16666666666666666" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/fragment_creator.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/fragment_log_out.xml" value="0.2" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/fragment_main.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/fragment_user.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/rv_item_creator.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/rv_item_logout.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/rv_item_main.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/layout/rv_item_user.xml" value="0.1" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16118143459915613" />
++        <entry key="..\:/Users/rerea/AndroidStudioProjects/UGD1_A_Kelompok9/app/src/main/res/menu/home_menu.xml" value="0.12222222222222222" />
+       </map>
+     </option>
+   </component>
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    package=\"com.example.ugd1_a_kelompok9\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.UGD1_A_Kelompok9\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".SpalashScreen\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".MainPageActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".FragmentMain\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".NextRegisterActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".RegisterActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\"\r\n            android:theme=\"@style/AppTheme.NoActionBar\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".HomeActivity\"\r\n            android:exported=\"false\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/AndroidManifest.xml	(date 1663658807806)
+@@ -11,7 +11,7 @@
+         android:label="@string/app_name"
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+-        android:theme="@style/Theme.UGD1_A_Kelompok9"
++        android:theme="@style/AppTheme.WithActionBar"
+         tools:targetApi="31">
+         <activity
+             android:name=".SpalashScreen"
+@@ -19,15 +19,16 @@
+         <activity
+             android:name=".MainPageActivity"
+             android:exported="false" />
+-        <activity
+-            android:name=".FragmentMain"
+-            android:exported="false" />
++<!--        <activity-->
++<!--            android:name=".FragmentMain"-->
++<!--            android:exported="false" />-->
+         <activity
+             android:name=".NextRegisterActivity"
+             android:exported="false" />
+         <activity
+             android:name=".RegisterActivity"
+-            android:exported="false" />
++            android:exported="false"
++            android:theme="@style/AppTheme.NoActionBar" />
+         <activity
+             android:name=".MainActivity"
+             android:exported="true"
+Index: app/src/main/res/values/style.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <style name=\"AppTheme\" parent=\"Theme.MaterialComponents.Light.NoActionBar\" />\r\n\r\n    <style name=\"AppTheme.NoActionBar\" >\r\n        <item name=\"windowActionBar\">false</item>\r\n        <item name=\"windowNoTitle\">true</item>\r\n        <item name=\"colorPrimary\">#CDF0EA</item>\r\n        <item name=\"colorPrimaryDark\">#5F6F94</item>\r\n        <item name=\"colorAccent\">#97D2EC</item>\r\n    </style>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/style.xml b/app/src/main/res/values/style.xml
+--- a/app/src/main/res/values/style.xml	(revision 0757781b9beb81e08d1b51c15295cfdef7d7146f)
++++ b/app/src/main/res/values/style.xml	(date 1663658807819)
+@@ -1,12 +1,18 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar" />
++    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
++        <item name="colorPrimary">#47B5FF</item>
++        <item name="colorPrimaryDark">#1363DF</item>
++        <item name="colorAccent">#06283D</item>
++    </style>
++
++    <style name="AppTheme.WithActionBar">
++        <item name="windowActionBar">true</item>
++        <item name="windowNoTitle">false</item>
++    </style>
+ 
+     <style name="AppTheme.NoActionBar" >
+         <item name="windowActionBar">false</item>
+         <item name="windowNoTitle">true</item>
+-        <item name="colorPrimary">#CDF0EA</item>
+-        <item name="colorPrimaryDark">#5F6F94</item>
+-        <item name="colorAccent">#97D2EC</item>
+     </style>
+ </resources>
+\ No newline at end of file
