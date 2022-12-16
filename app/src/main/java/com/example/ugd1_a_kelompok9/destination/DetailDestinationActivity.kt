@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.ugd1_a_kelompok9.Activity.LocationActivity
 import com.example.ugd1_a_kelompok9.RClientDestination
 import com.example.ugd1_a_kelompok9.Data.ResponseCreate
 import com.example.ugd1_a_kelompok9.R
@@ -48,6 +49,10 @@ class DetailDestinationActivity : AppCompatActivity() {
             startActivity(Intent(this, FormEditDestinationActivity::class.java).apply {
                 putExtra("id",id)
             })
+        }
+
+        binding.btnMaps.setOnClickListener {
+            startActivity(Intent(this, LocationActivity::class.java))
         }
     }
 

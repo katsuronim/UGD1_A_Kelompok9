@@ -11,9 +11,8 @@
         android:id="@+id/btnAdd"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="400dp"
         android:backgroundTint="#B8E9FF"
         android:fontFamily="sans-serif-black"
         android:text="List Destinasi"
@@ -21,18 +20,14 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.297" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btnQRMenu"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="#65647C"
         android:fontFamily="sans-serif-black"
         android:text="Scan QR Code"
@@ -40,16 +35,13 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.479" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btnListTransportasi"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="100dp"
         android:backgroundTint="#c6093b"
         android:fontFamily="sans-serif-black"
@@ -67,8 +59,7 @@
         android:id="@+id/btnAccelerometer"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="#FFA07A"
         android:fontFamily="sans-serif-black"
         android:text="Shake Kupon"
@@ -78,6 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnQRMenu"
+        app:layout_constraintTop_toBottomOf="@+id/btnListTransportasi"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

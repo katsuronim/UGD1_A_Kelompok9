@@ -181,6 +181,19 @@
             android:backgroundTint="@color/teal_700"
             app:cornerRadius="10dp"/>
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/btn_hapus"
+            app:layout_constraintEnd_toStartOf="@id/btn_edit"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Maps"
+            android:textAllCaps="false"
+
+            app:icon="@drawable/ic_baseline_location_on_24"
+            android:backgroundTint="#2dad36"
+            app:cornerRadius="10dp"/>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
