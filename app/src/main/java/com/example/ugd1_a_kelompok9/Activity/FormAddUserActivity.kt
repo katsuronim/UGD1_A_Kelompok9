@@ -24,64 +24,59 @@ class FormAddUserActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
         binding.btnAdd.setOnClickListener {
-            auth.createUserWithEmailAndPassword(binding.txtEmail.text.toString(), binding.txtPassword.text.toString())
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        auth.currentUser?.sendEmailVerification()?.addOnCompleteListener(this){ task ->
-                            if(task.isSuccessful){
-                                FancyToast.makeText(applicationContext,"Register Berhasil, Mohon cek email anda untuk verifikasi!",
-                                    FancyToast.LENGTH_LONG,
-                                    FancyToast.SUCCESS,true).show()
-                                saveData()
-                            } else {
-                                FancyToast.makeText(applicationContext,task.exception.toString(),
-                                    FancyToast.LENGTH_LONG,
-                                    FancyToast.ERROR,true).show()
-                            }
-                        }
-                    } else {
-                        FancyToast.makeText(applicationContext,task.exception.toString(),
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,true).show()
-                    }
-                }
-        }
-    }
-    fun saveData(){
-        with(binding) {
-//            val id = txtId.text.toString()
-            val nama= txtNama.text.toString()
-            val username = txtUsername.text.toString()
-            val password = txtPassword.text.toString()
-            val notelp = txtNotelp.text.toString()
-            val tgllahir = txtTgllahir.text.toString()
-            val email = txtEmail.text.toString()
 
-            RClient.instances.createData(nama,username,password,notelp, tgllahir, email).enqueue(object :
-                Callback<ResponseCreate> {
-                override fun onResponse(
-                    call: Call<ResponseCreate>,
-                    response: Response<ResponseCreate>
-                ) {
-                    if(response.isSuccessful){
-                        FancyToast.makeText(applicationContext,"${response.body()?.pesan}",
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.SUCCESS,true).show()
-                        finish()
-                    }else {
-                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+            with(binding) {
+//            val id = txtId.text.toString()
+                val nama= txtNama.text.toString()
+                val username = txtUsername.text.toString()
+                val password = txtPassword.text.toString()
+                val notelp = txtNotelp.text.toString()
+                val tgllahir = txtTgllahir.text.toString()
+                val email = txtEmail.text.toString()
+
+                RClient.instances.createData(nama,username,password,notelp, tgllahir, email).enqueue(object :
+                    Callback<ResponseCreate> {
+                    override fun onResponse(
+                        call: Call<ResponseCreate>,
+                        response: Response<ResponseCreate>
+                    ) {
+                        if(response.isSuccessful){
+                            auth.createUserWithEmailAndPassword(binding.txtEmail.text.toString(), binding.txtPassword.text.toString())
+                                .addOnCompleteListener(this@FormAddUserActivity) { task ->
+                                    if (task.isSuccessful) {
+                                        auth.currentUser?.sendEmailVerification()?.addOnCompleteListener(this@FormAddUserActivity){ task ->
+                                            if(task.isSuccessful){
+                                                FancyToast.makeText(applicationContext,"${response.body()?.pesan}",
+                                                    FancyToast.LENGTH_LONG,
+                                                    FancyToast.SUCCESS,true).show()
+                                                finish()
+                                            } else {
+                                                FancyToast.makeText(applicationContext,task.exception.toString(),
+                                                    FancyToast.LENGTH_LONG,
+                                                    FancyToast.ERROR,true).show()
+                                            }
+                                        }
+                                    } else {
+                                        FancyToast.makeText(applicationContext,task.exception.toString(),
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.ERROR,true).show()
+                                    }
+                                }
+                        }else {
+                            val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
 
 //                        txtUsername.setError(jsonObj.getString("message"))
 
-                        FancyToast.makeText(applicationContext,jsonObj.getString("message"),
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,true).show()
-                        //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
+                            FancyToast.makeText(applicationContext,jsonObj.getString("message"),
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.ERROR,true).show()
+                            //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
+                        }
                     }
-                }
-                override fun onFailure(call:
-                                       Call<ResponseCreate>, t: Throwable) {}
-            })
+                    override fun onFailure(call:
+                                           Call<ResponseCreate>, t: Throwable) {}
+                })
+            }
         }
     }
 

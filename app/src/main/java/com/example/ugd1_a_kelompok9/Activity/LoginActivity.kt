@@ -86,59 +86,59 @@ class  LoginActivity : AppCompatActivity() {
             val password: String = inputPassword.getEditText()?.getText().toString()
 
             //getDataDetail(username)
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){ task ->
-                if (task.isSuccessful) {
-                    if(auth.currentUser?.isEmailVerified == true){
-                        RClient.instances.checkLogin(email, password).enqueue(object :
-                            Callback<ResponseCreate> {
-                            override fun onResponse(
-                                call: Call<ResponseCreate>,
-                                response: Response<ResponseCreate>
-                            ) {
-                                if (response.isSuccessful) {
+            RClient.instances.checkLogin(email, password).enqueue(object :
+                Callback<ResponseCreate> {
+                override fun onResponse(
+                    call: Call<ResponseCreate>,
+                    response: Response<ResponseCreate>
+                ) {
+                    if (response.isSuccessful) {
+                        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity){ task ->
+                            if (task.isSuccessful) {
+                                if(auth.currentUser?.isEmailVerified == true){
                                     extras.putString("email", email)
                                     extras.putString("password", password)
                                     val intent = Intent(this@LoginActivity, MainPageActivity::class.java)
                                     intent.putExtras(extras)
-                                    startActivity(intent)
                                     FancyToast.makeText(
                                         applicationContext, "${response.body()?.pesan}",
                                         FancyToast.LENGTH_LONG,
                                         FancyToast.SUCCESS, true
                                     ).show()
+                                    startActivity(intent)
                                     finish()
                                 } else {
-                                    val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+                                    FancyToast.makeText(applicationContext,"Anda belum verifikasi email, mohon verifikasi terlebih dahulu!",
+                                        FancyToast.LENGTH_LONG,
+                                        FancyToast.ERROR,true).show()
+                                }
+                            } else {
+                                FancyToast.makeText(applicationContext,task.exception.toString(),
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,true).show()
+                            }
+                        }
+                    } else {
+                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
 
 //                        txtUsername.setError(jsonObj.getString("message"))
-                                    inputEmail.setError("Email salah!")
-                                    inputPassword.setError("Password salah!")
-                                    FancyToast.makeText(
-                                        applicationContext, jsonObj.getString("message"),
-                                        FancyToast.LENGTH_LONG,
-                                        FancyToast.ERROR, true
-                                    ).show()
-                                    //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
-                                }
-                            }
-
-                            override fun onFailure(
-                                call:
-                                Call<ResponseCreate>, t: Throwable
-                            ) {
-                            }
-                        })
-                    } else {
-                        FancyToast.makeText(applicationContext,"Anda belum verifikasi email, mohon verifikasi terlebih dahulu!",
+                        inputEmail.setError("Email salah!")
+                        inputPassword.setError("Password salah!")
+                        FancyToast.makeText(
+                            applicationContext, jsonObj.getString("message"),
                             FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,true).show()
+                            FancyToast.ERROR, true
+                        ).show()
+                        //FancyToast.makeText(applicationContext,"Maaf sudah ada datanya",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
                     }
-                } else {
-                    FancyToast.makeText(applicationContext,task.exception.toString(),
-                        FancyToast.LENGTH_LONG,
-                        FancyToast.ERROR,true).show()
                 }
-            }
+
+                override fun onFailure(
+                    call:
+                    Call<ResponseCreate>, t: Throwable
+                ) {
+                }
+            })
         })
     }
 }

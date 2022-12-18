@@ -57,8 +57,10 @@ class ShakeKuponActivity : AppCompatActivity(), SensorEventListener {
             val color = if (upDown.toInt() == 0 && sides.toInt() ==0)
                 Color.GREEN else Color.RED
             square.setBackgroundColor(color)
-            square.text = "up/down ${upDown.toInt()}\nleft/right${sides.toInt()}"
-            FancyToast.makeText(applicationContext,"Maaf Anda Kurang Beruntung",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show()
+            square.text = "Ayo goyangkan hingga kotak berwarna hijau!"
+            if(color == Color.GREEN){
+                FancyToast.makeText(applicationContext,"Maaf Anda Kurang Beruntung",FancyToast.LENGTH_LONG,FancyToast.INFO,true).show()
+            }
         }
     }
 

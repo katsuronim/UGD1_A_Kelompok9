@@ -58,9 +58,6 @@ class FragmentAkun : Fragment(R.layout.fragment_akun) {
     }
 
     fun getDataDetail(user:String){
-        val email = b?.getString("email")
-        email?.let { getDataDetail(it) }
-
         RClient.instances.getData(user).enqueue(object : Callback<ResponseDataUser> {
             override fun onResponse(
                 call: Call<ResponseDataUser>,
