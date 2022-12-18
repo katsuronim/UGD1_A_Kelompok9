@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RClientDestination {
-    private const val BASE_URL = "http://192.168.1.53/ci4-apiserver/public/"
+    private const val BASE_URL = "http://192.168.1.43/ci4-apiserver/public/"
 
     val instances: apiDestination by lazy {
         val retrofit = Retrofit.Builder()
