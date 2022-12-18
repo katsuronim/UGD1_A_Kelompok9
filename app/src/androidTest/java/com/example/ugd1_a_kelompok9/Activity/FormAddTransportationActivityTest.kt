@@ -1,4 +1,4 @@
-package com.example.ugd1_a_kelompok9.destination
+package com.example.ugd1_a_kelompok9.Activity
 
 
 import android.view.View
@@ -23,14 +23,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class FormAddDestinationActivityTest {
+class FormAddTransportationActivityTest {
 
     @Rule
     @JvmField
-    var mActivityScenarioRule = ActivityScenarioRule(FormAddDestinationActivity::class.java)
+    var mActivityScenarioRule = ActivityScenarioRule(FormAddTransportationActivity::class.java)
 
     @Test
-    fun formAddDestinationActivityTest() {
+    fun formAddTransportationActivityTest() {
         val materialButton = onView(
             allOf(
                 withId(R.id.btn_add), withText("Simpan Data"),
@@ -60,7 +60,7 @@ class FormAddDestinationActivityTest {
                 isDisplayed()
             )
         )
-        textInputEditText.perform(replaceText("Pulau Raja Ampat"), closeSoftKeyboard())
+        textInputEditText.perform(replaceText("Taksaka Malam"), closeSoftKeyboard())
 
         val materialButton2 = onView(
             allOf(
@@ -80,18 +80,18 @@ class FormAddDestinationActivityTest {
 
         val textInputEditText2 = onView(
             allOf(
-                withId(R.id.txt_harga),
+                withId(R.id.txtJenis),
                 childAtPosition(
                     childAtPosition(
                         withId(android.R.id.content),
                         0
                     ),
-                    5
+                    1
                 ),
                 isDisplayed()
             )
         )
-        textInputEditText2.perform(replaceText("8000000"), closeSoftKeyboard())
+        textInputEditText2.perform(replaceText("Kereta"), closeSoftKeyboard())
 
         val materialButton3 = onView(
             allOf(
@@ -111,21 +111,18 @@ class FormAddDestinationActivityTest {
 
         val textInputEditText3 = onView(
             allOf(
-                withId(R.id.txt_deskripsi),
+                withId(R.id.txtJamBerangkat),
                 childAtPosition(
                     childAtPosition(
                         withId(android.R.id.content),
                         0
                     ),
-                    6
+                    2
                 ),
                 isDisplayed()
             )
         )
-        textInputEditText3.perform(
-            replaceText("Kunjungi pulau impian dan nikmati keindahan alami pulau raja ampat"),
-            closeSoftKeyboard()
-        )
+        textInputEditText3.perform(replaceText("15:00 WIB"), closeSoftKeyboard())
 
         val materialButton4 = onView(
             allOf(
@@ -141,6 +138,68 @@ class FormAddDestinationActivityTest {
             )
         )
         materialButton4.perform(click())
+        onView(isRoot()).perform(waitFor(3000))
+
+        val textInputEditText4 = onView(
+            allOf(
+                withId(R.id.txtJamTiba),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    3
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText4.perform(replaceText("04:00 WIB"), closeSoftKeyboard())
+
+        val materialButton5 = onView(
+            allOf(
+                withId(R.id.btn_add), withText("Simpan Data"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    7
+                ),
+                isDisplayed()
+            )
+        )
+        materialButton5.perform(click())
+        onView(isRoot()).perform(waitFor(3000))
+
+        val textInputEditText5 = onView(
+            allOf(
+                withId(R.id.txt_harga),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    6
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText5.perform(replaceText("500000"), closeSoftKeyboard())
+
+        val materialButton6 = onView(
+            allOf(
+                withId(R.id.btn_add), withText("Simpan Data"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    7
+                ),
+                isDisplayed()
+            )
+        )
+        materialButton6.perform(click())
         onView(isRoot()).perform(waitFor(3000))
     }
 
